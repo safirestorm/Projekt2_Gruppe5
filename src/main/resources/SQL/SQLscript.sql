@@ -29,5 +29,3 @@ CREATE TABLE wishes (
     CONSTRAINT fk_wishlistID FOREIGN KEY (wishlistID)
         REFERENCES wishlists(id)
                     );
-
-DROP TABLE wishes;
