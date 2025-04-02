@@ -19,9 +19,12 @@ CREATE TABLE wishlists (
 
 CREATE TABLE wishes (
     id int AUTO_INCREMENT PRIMARY KEY,
-    wishlistID int, name varchar(200),
+    wishlistID int,
+    name varchar(200),
+    price int,
     link varchar(500),
     description LONGTEXT,
+    reservedstatus BOOLEAN,
     CONSTRAINT fk_wishlistID FOREIGN KEY (wishlistID)
         REFERENCES wishlists(id)
                     );
