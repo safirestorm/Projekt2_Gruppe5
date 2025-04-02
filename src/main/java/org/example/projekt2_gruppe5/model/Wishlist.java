@@ -9,6 +9,13 @@ public class Wishlist {
     LocalDate expirationDate;
     ArrayList<Wish> wishlist;
 
+    //Contructers
+
+    public Wishlist(String name) {
+        this.name = name;
+    }
+
+    //Getters
     public int getId() {
         return id;
     }
@@ -24,7 +31,7 @@ public class Wishlist {
     public ArrayList<Wish> getWishlist() {
         return wishlist;
     }
-
+    //Setters
     public void setId(int id) {
         this.id = id;
     }
