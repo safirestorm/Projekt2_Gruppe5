@@ -1,0 +1,8 @@
+:root {
+    --cO: #EF820;
+    --cB: #303030;
+    --cW: #F8F8F8;
+
+font-family: Comic Sans;
+    color: var(--cB);
+}
