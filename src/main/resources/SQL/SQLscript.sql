@@ -24,7 +24,10 @@ CREATE TABLE wishes (
     price int,
     link varchar(500),
     description LONGTEXT,
+    image varchar(100),
     reservedstatus BOOLEAN,
     CONSTRAINT fk_wishlistID FOREIGN KEY (wishlistID)
         REFERENCES wishlists(id)
                     );
+
+DROP TABLE wishes;
