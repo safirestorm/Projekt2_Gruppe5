@@ -15,6 +15,8 @@ public class Wish {
         this.image = image;
     }
 
+    public Wish() {}
+
     public int getWishId() {
         return wishId;
     }
