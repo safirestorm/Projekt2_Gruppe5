@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Brugserside</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{style.css}">
+    <link rel="stylesheet" href="../static/brugerside.css" th:href="@{/brugerside.css}">
 </head>
 <body>
-
+<div class="list">
+    <a th:href="@{/wishlist/{id}(id=${Wishlist.id})}" class="square"> <!-- gør hele boksen til en knap der dirigere til en wishlish side afhængigt ag wishlist id-->
+        <div>
+            <label>ID:</label>
+            <span th:text="${Wishlist.id}">ID</span> <!-- ID label fjernes senere -->
+        </div>
+        <div>
+            <label>Name:</label>
+            <span th:text="${Wishlist.name}">Name</span>
+        </div>
+        <div>
+            <label>Expiration Date:</label>
+            <span th:text="${Wishlist.expirationDate}">Expiration Date</span>
+        </div>
+    </a>
+</div>
 </body>
 </html>
