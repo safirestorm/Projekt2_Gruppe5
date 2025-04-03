@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{index.css}">
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{style.css}">
@@ -8,13 +9,18 @@
 <body>
 
 <h2 th:if="${userCreatedMessage}" th:text="${userCreatedMessage}"></h2>
-<form>
+<form action="/" method="post">
     <label for="username">Username:</label>
-    <input type="text" id="username">
+    <input type="text" id="username" name="username">
     <label for="password">Password:</label>
-    <input type="password" id="password">
-    <input type="submit" id="submit" value="Login">
-
+    <input type="password" id="password" name="password">
+    <button type="submit">Login</button>
+    <div th:if="${loginMessage}">
+    <p th:text="${loginMessage}"></p>
+    </div>
+    <div th:if="${loginError}">
+    <p th:text="${loginError}"></p>
+    </div>
 </form>
 
 <! Button for create User>
