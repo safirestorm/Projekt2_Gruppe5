@@ -1,29 +1,20 @@
 package org.example.projekt2_gruppe5.model;
 
 public class User {
-    int id;
     String firstname;
     String lastname;
     String username;
     String password;
 
-
-    public User(int id, String firstname, String lastname, String username, String password) {
-        this.id = id;
+    //Constructor
+    public User(String firstname, String lastname, String username, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    //Getters and setters
     public String getFirstname() {
         return firstname;
     }

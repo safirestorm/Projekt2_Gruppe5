@@ -6,6 +6,8 @@
     <link rel="stylesheet" th:href="@{style.css}">
 </head>
 <body>
+
+<h2 th:if="${userCreatedMessage}" th:text="${userCreatedMessage}"></h2>
 <form>
     <label for="username">Username:</label>
     <input type="text" id="username">

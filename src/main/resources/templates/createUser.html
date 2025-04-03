@@ -8,5 +8,24 @@
 </head>
 <body>
     <h1>Hallooo</h1>
+    <h2 th:if="${errorMessage}" th:text="${errorMessage}"></h2>
+    <form th:action="@{/saveCreateUser}" method="post" class="createUserForm">
+        <label for="userName">Username</label>
+        <input type="text" id="userName" name="userName" placeholder="Enter your username" required>
+
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+
+        <label for="passWord">Password</label>
+        <input type="text" id="passWord" name="passWord" placeholder="Enter the password you want" required>
+
+        <label for="passWordControl">Re-enter Password</label>
+        <input type="text" id="passWordControl" name="passWordControl" placeholder="Re-enter your password" required>
+
+        <button type="submit">submit</button>
+    </form>
 </body>
 </html>
