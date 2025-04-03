@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{style.css}">
     <link rel="stylesheet" th:href="@{index.css}">
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{style.css}">
 </head>
 <body>
 
 <h2 th:if="${userCreatedMessage}" th:text="${userCreatedMessage}"></h2>
+<div class="loginDiv">
+    <!-- this form is send from "/" -->
 <form action="/" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username">
     <label for="password">Password:</label>
     <input type="password" id="password" name="password">
     <button type="submit">Login</button>
+    <!-- thymeleaf if condition - rooted in the LoginController -->
     <div th:if="${loginMessage}">
     <p th:text="${loginMessage}"></p>
     </div>
@@ -22,8 +25,9 @@
     <p th:text="${loginError}"></p>
     </div>
 </form>
+</div> <!-- loginDiv ends -->
 
-<! Button for create User>
+<!-- Button for create User -->
 <a th:href="@{/getCreateUser}" class="createUserButton">Create a new user</a>
 </body>
 </html>
