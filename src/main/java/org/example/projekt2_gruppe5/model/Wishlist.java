@@ -6,14 +6,17 @@ import java.util.ArrayList;
 public class Wishlist {
     int id;
     String name;
+    String description;
     LocalDate expirationDate;
     ArrayList<Wish> wishlist;
+    int userId;
 
     //Contructers
 
     public Wishlist(String name) {
         this.name = name;
     }
+    public Wishlist(){}
 
     //Getters
     public int getId() {
@@ -31,6 +34,12 @@ public class Wishlist {
     public ArrayList<Wish> getWishlist() {
         return wishlist;
     }
+    public String getDescription() {
+        return description;
+    }
+    public int getUserId() {
+        return userId;
+    }
     //Setters
     public void setId(int id) {
         this.id = id;
@@ -46,5 +55,11 @@ public class Wishlist {
 
     public void setWishlist(ArrayList<Wish> wishlist) {
         this.wishlist = wishlist;
+    }
+    public void setUserId(int userId) {
+
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
