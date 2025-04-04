@@ -1,5 +1,6 @@
 package org.example.projekt2_gruppe5.controller;
 
+import org.example.projekt2_gruppe5.exceptions.UserNotCreatedException;
 import org.example.projekt2_gruppe5.model.User;
 import org.example.projekt2_gruppe5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class UserController {
             RedirectAttributes redirectAttributes){
         System.out.println("It worked, read username as " + userName);
 
+        //First, format username to be lowercase
+        userName = userName.toLowerCase();
         //Check if username is taken, return error if it is
         if (userService.isUserNameAvailable(userName)){
             redirectAttributes.addFlashAttribute("errorMessage", "Username was taken, try again");
@@ -44,8 +47,17 @@ public class UserController {
         }
 
         //If all tests are passed, create the user
-        User user = new User(userName, firstName, lastName, passWord);
-        userService.saveNewUser(user);
+        User user = new User(firstName, lastName, userName, passWord);
+
+        try {
+            userService.saveNewUser(user);
+        }
+        catch (UserNotCreatedException e){
+            e.printStackTrace();
+
+            redirectAttributes.addFlashAttribute("errorMessage", "Your user could not be created for an unknown reason. Try again with other inputs");
+            return "redirect:/getCreateUser";
+        }
 
         redirectAttributes.addFlashAttribute("userCreatedMessage", "User " + userName + " was created! Have fun wishing <3");
         return "redirect:/";
