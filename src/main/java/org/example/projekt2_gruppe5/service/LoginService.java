@@ -17,11 +17,14 @@ public class LoginService {
     // Method for setting a current user
     private User currentUser;
     public boolean login(String username, String password) {
+        System.out.println("Arrived at login service");
         User user = userRepoLogin.findUserByUsernameAndPassword(username, password);
         if (user!=null) {
+            System.out.println("user was found");
             currentUser = user;
             return true;
         }
+        System.out.println("user was null");
         return false;
     }
 
