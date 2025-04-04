@@ -9,7 +9,7 @@ public class Wishlist {
     String description;
     LocalDate expirationDate;
     ArrayList<Wish> wishlist;
-    int userId;
+    String userId;
 
     //Contructers
 
@@ -37,7 +37,7 @@ public class Wishlist {
     public String getDescription() {
         return description;
     }
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
     //Setters
@@ -56,8 +56,8 @@ public class Wishlist {
     public void setWishlist(ArrayList<Wish> wishlist) {
         this.wishlist = wishlist;
     }
-    public void setUserId(int userId) {
-
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
     public void setDescription(String description) {
         this.description = description;
