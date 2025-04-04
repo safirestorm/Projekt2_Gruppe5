@@ -31,7 +31,9 @@ public class WishRepo {
             wish.setName(resultSet.getString("name"));
             wish.setPrice(resultSet.getInt("price"));
             wish.setLink(resultSet.getString("link"));
+            wish.setDescription(resultSet.getString("description"));
             wish.setImage(resultSet.getString("image"));
+            wish.setReserved(resultSet.getBoolean("reservedstatus"));
             wishList.add(wish);
         }
 
@@ -39,5 +41,27 @@ public class WishRepo {
         e.printStackTrace();
     }
     return wishList;
+    }
+
+    public void saveWish(Wish wish) {
+        String sql = "INSERT INTO wishes (name, price, link, description, image, reservedstatus)";
+
+        try (Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);){
+
+            statement.setString(1, wish.getName());
+            statement.setInt(2, wish.getPrice());
+            statement.setString(3, wish.getLink());
+            statement.setString(4, wish.getDescription());
+            statement.setString(5, wish.getImage());
+            statement.setBoolean(6, wish.isReserved());
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteWish() {
+
     }
 }

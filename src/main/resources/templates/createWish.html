@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create wish</title>
+    <link rel="stylesheet" th:href="@{style.css}">
+    <link rel="stylesheet" th:href="@{createUser.css}">
 </head>
 <body>
+<div class="mainContent">
+    <div class="formBox">
+
+        <form th:action="@{/saveCreateWish}" method="post">
+            <h1>Create Wish</h1>
+            <div class="inputField">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter name" required>
+            </div>
+
+            <div class="inputField">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" placeholder="Enter price" required>
+            </div>
+
+            <div class="inputField">
+                <label for="link">Link</label>
+                <input type="text" id="link" name="link" placeholder="Enter link" required>
+            </div>
+
+            <div class="inputField">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" placeholder="Enter description">
+            </div>
+
+            <button type="submit" class="submitButton">Create Wish</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
