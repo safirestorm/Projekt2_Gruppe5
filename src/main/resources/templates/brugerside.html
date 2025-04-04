@@ -2,26 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Brugserside</title>
-    <link rel="stylesheet" href="../static/style.css" th:href="@{style.css}">
+    <title>Brugerside</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
     <link rel="stylesheet" href="../static/brugerside.css" th:href="@{/brugerside.css}">
 </head>
 <body>
 <div class="list">
-    <a th:href="@{/wishlist/{id}(id=${Wishlist.id})}" class="square"> <!-- gør hele boksen til en knap der dirigere til en wishlish side afhængigt ag wishlist id-->
-        <div>
-            <label>ID:</label>
-            <span th:text="${Wishlist.id}">ID</span> <!-- ID label fjernes senere -->
+        <div th:each="wishlist : ${wishListList}" class="square">
+            <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">
+                <div>
+                    <label>Name:</label>
+                    <span th:text="${wishlist.name}">Name</span>
+                </div>
+                <div>
+                    <label>Date:</label>
+                    <span th:text="${wishlist.date}">Date</span>
+                </div>
+                <div>
+                    <label>Description:</label>
+                    <span th:text="${wishlist.description}">Description</span>
+                </div>
+            </a>
         </div>
-        <div>
-            <label>Name:</label>
-            <span th:text="${Wishlist.name}">Name</span>
-        </div>
-        <div>
-            <label>Expiration Date:</label>
-            <span th:text="${Wishlist.expirationDate}">Expiration Date</span>
-        </div>
-    </a>
-</div>
+    </div>
 </body>
 </html>
