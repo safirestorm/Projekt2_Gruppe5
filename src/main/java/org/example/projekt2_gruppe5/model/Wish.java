@@ -5,14 +5,17 @@ public class Wish {
     String name;
     int price;
     String link;
+    String description;
     String image;
+    boolean isReserved;
 
-    public Wish(int wishId, String name, int price, String link, String image) {
-        this.wishId = wishId;
+    public Wish(String name, int price, String link, String description, String image) {
         this.name = name;
         this.price = price;
         this.link = link;
+        this.description = description;
         this.image = image;
+        isReserved = false;
     }
 
     public Wish() {}
@@ -57,5 +60,19 @@ public class Wish {
         this.image = image;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isReserved() {
+        return isReserved;
+    }
+
+    public void setReserved(boolean reserved) {
+        isReserved = reserved;
+    }
 }
