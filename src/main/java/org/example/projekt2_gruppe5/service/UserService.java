@@ -54,10 +54,6 @@ public class UserService {
                 PreparedStatement statement = connection.prepareStatement(sql);
         ){
             //Set placeholder values in statement to correct values
-            System.out.println(user.getUsername());
-            System.out.println(user.getPassword());
-            System.out.println(user.getFirstname());
-            System.out.println(user.getLastname());
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getFirstname());

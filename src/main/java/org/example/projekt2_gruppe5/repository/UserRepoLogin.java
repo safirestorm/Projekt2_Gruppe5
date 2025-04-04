@@ -21,7 +21,7 @@ public class UserRepoLogin{
 
     // Method for finding a user in database based on username and password
     public User findUserByUsernameAndPassword(String username, String password){
-        String query = "SELECT * FROM user WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 
         // Ensures the database is closed after use
         try (Connection connection = DataSourceUtils.getConnection(dataSource);
@@ -31,10 +31,11 @@ public class UserRepoLogin{
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println("Query was executed. Found: " + resultSet);
 
             // Checks if resultSet is empty - could possibly also be if (!resultSet.isEmpty)
             if (resultSet.next()) {
-
+                System.out.println("There is something in the resultset");
                 // Set null as there is not a valueless constructor - did not want to fuck up the user class
                 User user = new User(null, null, null, null);
                 user.setUsername(resultSet.getString("username"));

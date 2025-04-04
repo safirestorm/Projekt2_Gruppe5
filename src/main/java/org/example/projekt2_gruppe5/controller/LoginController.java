@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
@@ -21,21 +22,28 @@ public class LoginController {
 
     // The model holds a key with a value - fx key "message" has data "Login succesful" and can be refered to with thymeleaf
     @PostMapping("/")
-    public String login(String username, String password, Model model) {
+    public String login(String username, String password, RedirectAttributes redirectAttributes) {
+        System.out.println("Arrived at login attempt");
         boolean success = loginService.login(username, password);
 
         if (success) {
-            model.addAttribute("loginMessage", "Login successful");
-            return "brugerSide";
+            redirectAttributes.addFlashAttribute("loginMessage", "Welcome " + username);
+            return "redirect:/getUserPage";
         } else {
-            model.addAttribute("loginError", "Login failed");
-            return "index";
+            redirectAttributes.addFlashAttribute("loginError", "Fuck u");
+            return "redirect:/";
         }
+    }
+
+    @GetMapping("/getUserPage")
+    public String getUserPage(Model model) {
+        System.out.println("Arrived at getUserPage");
+        return "brugerside";
     }
 
     @GetMapping("/logout")
     public String logout() {
         loginService.logout();
-        return "redirect:/index";
+        return "redirect:/";
     }
 }
