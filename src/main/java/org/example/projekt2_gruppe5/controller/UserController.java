@@ -2,9 +2,11 @@ package org.example.projekt2_gruppe5.controller;
 
 import org.example.projekt2_gruppe5.exceptions.UserNotCreatedException;
 import org.example.projekt2_gruppe5.model.User;
+import org.example.projekt2_gruppe5.service.LoginService;
 import org.example.projekt2_gruppe5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +17,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    LoginService loginService;
 
     @GetMapping("/getCreateUser")
     public String getCreateUser(){
@@ -61,5 +66,13 @@ public class UserController {
 
         redirectAttributes.addFlashAttribute("userCreatedMessage", "User " + userName + " was created! Have fun wishing <3");
         return "redirect:/";
+    }
+
+    @GetMapping("/getCurrentUser")
+    public String viewCurrentuser(Model model){
+        User dumbcurrentUser = loginService.getCurrentUser();
+        model.addAttribute(dumbcurrentUser);
+        System.out.println(dumbcurrentUser.getUsername());
+        return "loginTest";
     }
 }
