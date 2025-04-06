@@ -1,7 +1,6 @@
-package org.example.projekt2_gruppe5.service;
+package org.example.projekt2_gruppe5.Archived;
 
 import org.example.projekt2_gruppe5.model.User;
-import org.example.projekt2_gruppe5.repository.UserRepoLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

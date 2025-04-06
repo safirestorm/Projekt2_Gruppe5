@@ -1,4 +1,4 @@
-package org.example.projekt2_gruppe5.repository;
+package org.example.projekt2_gruppe5.Archived;
 
 import org.example.projekt2_gruppe5.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

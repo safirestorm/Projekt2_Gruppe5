@@ -2,7 +2,7 @@ package org.example.projekt2_gruppe5.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.example.projekt2_gruppe5.model.User;
-import org.example.projekt2_gruppe5.service.LoginService;
+import org.example.projekt2_gruppe5.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ public class LoginController {
 
     // Allows usage of the LoginService
     @Autowired
-    private LoginService loginService;
+    private UserRepo userRepo;
 
     @GetMapping("/")
     public String getLoginPage(HttpSession httpSession) {
@@ -24,18 +24,16 @@ public class LoginController {
     }
 
     // The model holds a key with a value - fx key "message" has data "Login succesful" and can be refered to with thymeleaf
-    @PostMapping("/")
-    public String login(String username, String password, RedirectAttributes redirectAttributes, Model model) {
+    @PostMapping("/tryLoginUser")
+    public String tryLoginUser(String username, String password, RedirectAttributes redirectAttributes, Model model) {
         System.out.println("Arrived at login attempt");
-        boolean success = loginService.login(username, password);
+        boolean success = userRepo.login(username, password);
 
         if (success) {
             redirectAttributes.addFlashAttribute("loginMessage", "Welcome " + username);
-            User dumbcurrentUser = loginService.getCurrentUser();
-            model.addAttribute(dumbcurrentUser);
             return "redirect:/getCurrentUser";
         } else {
-            redirectAttributes.addFlashAttribute("loginError", "Fuck u");
+            redirectAttributes.addFlashAttribute("loginError", "Could not log in, try again");
             return "redirect:/";
         }
     }
@@ -48,7 +46,7 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout() {
-        loginService.logout();
+        //loginService.logout();
         return "redirect:/";
     }
 }

@@ -8,8 +8,11 @@
 </head>
 <body>
 
-    <p th:text="${dumbcurrentUser.getString(dumbcurrentUser.getUsername)}">FallbackText</p>
     <p th:if="${loginMessage}" th:text="${loginMessage}">Fallbacktext</p>
+
+    <p>HALÅÅÅ</p>
+
+    <p th:text="${currentUser.username}"></p>
 
 </body>
 </html>

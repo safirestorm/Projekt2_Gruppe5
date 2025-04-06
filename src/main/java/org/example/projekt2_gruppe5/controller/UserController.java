@@ -2,7 +2,7 @@ package org.example.projekt2_gruppe5.controller;
 
 import org.example.projekt2_gruppe5.exceptions.UserNotCreatedException;
 import org.example.projekt2_gruppe5.model.User;
-import org.example.projekt2_gruppe5.service.LoginService;
+import org.example.projekt2_gruppe5.repository.UserRepo;
 import org.example.projekt2_gruppe5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class UserController {
     UserService userService;
 
     @Autowired
-    LoginService loginService;
+    UserRepo userRepo;
 
     @GetMapping("/getCreateUser")
     public String getCreateUser(){
@@ -55,7 +55,7 @@ public class UserController {
         User user = new User(firstName, lastName, userName, passWord);
 
         try {
-            userService.saveNewUser(user);
+            userRepo.saveNewUser(user);
         }
         catch (UserNotCreatedException e){
             e.printStackTrace();
@@ -70,9 +70,8 @@ public class UserController {
 
     @GetMapping("/getCurrentUser")
     public String viewCurrentuser(Model model){
-        User dumbcurrentUser = loginService.getCurrentUser();
-        model.addAttribute(dumbcurrentUser);
-        System.out.println(dumbcurrentUser.getUsername());
+        User currentUser = userRepo.getCurrentUser();
+        model.addAttribute("currentUser", currentUser);
         return "loginTest";
     }
 }
