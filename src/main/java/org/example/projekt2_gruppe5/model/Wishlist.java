@@ -30,6 +30,9 @@ public class Wishlist {
     public LocalDate getExpirationDate() {
         return expirationDate;
     }
+    public String getStringExpirationDate(LocalDate expirationDate) {
+        return expirationDate.toString();
+    }
 
     public ArrayList<Wish> getWishlist() {
         return wishlist;

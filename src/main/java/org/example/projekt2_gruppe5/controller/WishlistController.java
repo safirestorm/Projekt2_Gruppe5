@@ -15,7 +15,9 @@ public class WishlistController {
     @GetMapping("/getUserPage")
     public String showWishlists(Model model) {
         // får WishLists
+        System.out.println("Vi prøver at vise wishlists");
         model.addAttribute("wishListList", wishlistRepository.getAllWishlist());
+        System.out.println("Wishlists: " + wishlistRepository.getAllWishlist());
         return "brugerside"; // Thymeleaf will look for this .html template
     }
 }

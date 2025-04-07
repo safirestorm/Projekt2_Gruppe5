@@ -18,7 +18,7 @@ public class WishlistRepo {
 
     public ArrayList<Wishlist> getAllWishlist() {
         ArrayList<Wishlist> wishListList = new ArrayList<>();
-        String sql = "SELECT * FROM wishlists"; // string sql statement
+        String sql = "SELECT * FROM wishlists WHERE userID = ?"; // string sql statement
 
         try (Connection connection = dataSource.getConnection(); // man laver en connecttion
              PreparedStatement statement = connection.prepareStatement(sql); // PreparedSatement sørger for at formateringen er korrekt til sql
@@ -30,6 +30,8 @@ public class WishlistRepo {
                 wishlist.setName(resultSet.getString("name"));
                 wishlist.setExpirationDate(resultSet.getDate("date").toLocalDate());
                 wishlist.setDescription(resultSet.getString("description"));
+                System.out.println("Found a wishlist! /n" + wishlist);
+                wishListList.add(wishlist);
             }
         } catch (SQLException e) {
             e.printStackTrace();
