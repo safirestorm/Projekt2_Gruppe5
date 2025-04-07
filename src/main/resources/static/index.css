@@ -1,25 +1,64 @@
+:root {
+    font-size: 30px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
 .loginDiv {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    margin-top: 30vh;
+    padding: 2vh 2vw;
 
-    border-radius: 3vmax;
+    border-radius: 25px;
 
     width: 30vw;
-
+    max-width: 500px;
+    min-width: 250px;
 
     background-color: var(--cO);
 }
-.inputAndLabel {
-    width: 25vw;
+
+form {
+    width: 100%;
+    outline: 1px solid blue;
 }
 
+.sameLine {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+
+    outline: 1px solid blue;
+}
+label {
+    font-size: 30px;
+    margin-right: 5px;
+}
 input {
-    position: relative;
-    width: min(10px);
-    float: right;
+    align-self: flex-end;
+    width: 10vw;
+    min-width: 100px;
+    font-size: 30px;
 }
 button {
+    display: block;
     width: 10vw;
+    min-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+
+    font-size: 30px;
+}
+
+label, input {
+    outline: 1px dashed #303030;
 }
