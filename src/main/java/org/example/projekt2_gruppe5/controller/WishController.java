@@ -34,6 +34,6 @@ public class WishController {
 
        Wish wish = new Wish(name, price, link, description, image);
        wishRepo.saveWish(wish);
-       return "redirect:/";
+       return "redirect:/viewWishlist";
 }
 }

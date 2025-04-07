@@ -44,7 +44,7 @@ public class WishRepo {
     }
 
     public void saveWish(Wish wish) {
-        String sql = "INSERT INTO wishes (name, price, link, description, image, reservedstatus)";
+        String sql = "INSERT INTO wishes (name, price, link, description, image) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);){
@@ -54,7 +54,6 @@ public class WishRepo {
             statement.setString(3, wish.getLink());
             statement.setString(4, wish.getDescription());
             statement.setString(5, wish.getImage());
-            statement.setBoolean(6, wish.isReserved());
 
         } catch (SQLException e){
             e.printStackTrace();

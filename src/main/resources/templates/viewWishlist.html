@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist</title>
+  <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
+</head>
+<body>
+<div class="square" th:each="wish : ${wishList}">
+    <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image">
+    <div>
+        <label>ID</label>
+        <span th:text="${wish.id}">ID</span>
+    </div>
+    <div>
+        <label>Product name</label>
+        <span th:text="${wish.name}">Product name</span>
+    </div>
+    <div>
+        <label>Price</label>
+        <span th:text="${wish.price}">Price</span>
+    </div>
+    <div>
+        <label>Link</label>
+        <span th:text="${wish.link}">Link</span>
+    </div>
+    <div>
+        <label>Description</label>
+        <span th:text="${wish.description}">description</span>
+    </div>
+    <div>
+        <label>ID</label>
+        <span th:text="${wish.id}">ID</span>
+    </div>
+</div>
+
+</body>
+</html>
