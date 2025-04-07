@@ -17,26 +17,29 @@ public class WishRepo {
     @Autowired
     DataSource dataSource;
 
-    public ArrayList<Wish> getAllWishes() {
+    public ArrayList<Wish> getAllWishesOnWishlist(int wishlistId) {
     ArrayList<Wish> wishList = new ArrayList<>();
-    String sql = "SELECT * FROM wishes";
+    String sql = "SELECT * FROM wishes WHERE wishlistID = ?";
 
     try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery()) {
+        PreparedStatement statement = connection.prepareStatement(sql)) {
 
-        while (resultSet.next()){
-            Wish wish = new Wish();
-            wish.setWishId(resultSet.getInt("id"));
-            wish.setName(resultSet.getString("name"));
-            wish.setPrice(resultSet.getInt("price"));
-            wish.setLink(resultSet.getString("link"));
-            wish.setDescription(resultSet.getString("description"));
-            wish.setImage(resultSet.getString("image"));
-            wish.setReserved(resultSet.getBoolean("reservedstatus"));
-            wishList.add(wish);
+        statement.setInt(1, wishlistId);
+
+        try (ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Wish wish = new Wish();
+                wish.setWishId(resultSet.getInt("id"));
+                wish.setName(resultSet.getString("name"));
+                wish.setPrice(resultSet.getInt("price"));
+                wish.setLink(resultSet.getString("link"));
+                wish.setDescription(resultSet.getString("description"));
+                wish.setImage(resultSet.getString("image"));
+                wish.setReserved(resultSet.getBoolean("reservedstatus"));
+                wishList.add(wish);
+            }
         }
-
     } catch(SQLException e) {
         e.printStackTrace();
     }
@@ -61,6 +64,7 @@ public class WishRepo {
     }
 
     public void deleteWish() {
+        String sql = "DELETE FROM wishes WHERE id = ?";
 
     }
 }

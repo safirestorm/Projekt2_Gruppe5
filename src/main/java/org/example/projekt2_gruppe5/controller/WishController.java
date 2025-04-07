@@ -5,9 +5,12 @@ import org.example.projekt2_gruppe5.repository.WishRepo;
 import org.example.projekt2_gruppe5.service.WishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 
 @Controller
 public class WishController {
@@ -36,4 +39,12 @@ public class WishController {
        wishRepo.saveWish(wish);
        return "redirect:/viewWishlist";
 }
+
+@GetMapping("/viewWishlist")
+    public String seeWishlist(@RequestParam("wishlistID") int id, Model model){
+    ArrayList<Wish> wishList = wishRepo.getAllWishesOnWishlist(id);
+    model.addAttribute("wishList", wishList);
+    return "viewWishlist";
+}
+
 }

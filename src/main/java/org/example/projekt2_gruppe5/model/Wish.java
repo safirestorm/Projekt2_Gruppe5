@@ -8,6 +8,7 @@ public class Wish {
     String description;
     String image;
     boolean isReserved;
+    int wishlistId;
 
     public Wish(String name, int price, String link, String description, String image) {
         this.name = name;
@@ -74,5 +75,13 @@ public class Wish {
 
     public void setReserved(boolean reserved) {
         isReserved = reserved;
+    }
+
+    public int getWishlistId() {
+        return wishlistId;
+    }
+
+    public void setWishlistId(int wishlistId) {
+        this.wishlistId = wishlistId;
     }
 }
