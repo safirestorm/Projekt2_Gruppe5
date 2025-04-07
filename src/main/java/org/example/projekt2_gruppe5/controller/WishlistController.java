@@ -12,7 +12,7 @@ public class WishlistController {
     @Autowired
     private WishlistRepo wishlistRepository;
 
-    @GetMapping("/wishlists")
+    @GetMapping("/getUserPage")
     public String showWishlists(Model model) {
         // får WishLists
         model.addAttribute("wishListList", wishlistRepository.getAllWishlist());

@@ -31,14 +31,14 @@ public class LoginController {
 
         if (success) {
             redirectAttributes.addFlashAttribute("loginMessage", "Welcome " + username);
-            return "redirect:/getCurrentUser";
+            return "redirect:/getUserPage";
         } else {
             redirectAttributes.addFlashAttribute("loginError", "Could not log in, try again");
             return "redirect:/";
         }
     }
 
-    @GetMapping("/getUserPage")
+    @GetMapping("/getCurrentUserPage")
     public String getUserPage(Model model) {
         System.out.println("Arrived at getUserPage");
         return "brugerside";
