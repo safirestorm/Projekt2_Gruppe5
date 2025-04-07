@@ -18,7 +18,7 @@ import java.util.Map;
 @Repository
 public class UserRepo {
 
-    User currentUser;
+    //User currentUser;
 
     HashMap<String, User> loggedInUsers = new HashMap<>();
 
@@ -65,7 +65,6 @@ DataSource dataSource;
         if (user!=null) {
             System.out.println("user was found with username " + user.getUsername());
             loggedInUsers.put(httpSession.getId(), user);
-            currentUser = user;
             return true;
         }
 

@@ -8,8 +8,6 @@
 </head>
 <body>
 <div class="list">
-
-
         <div th:each="wishlist : ${wishListList}" class="square">
             <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">
                 <div>
