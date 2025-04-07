@@ -9,11 +9,12 @@
 
 </head>
 <body>
+<div class="mainContent">
 <div class="square" th:each="wish : ${wishList}">
     <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image">
     <div>
         <label>ID</label>
-        <span th:text="${wish.id}">ID</span>
+        <span th:text="${wish.wishId}">ID</span>
     </div>
     <div>
         <label>Product name</label>
@@ -31,11 +32,7 @@
         <label>Description</label>
         <span th:text="${wish.description}">description</span>
     </div>
-    <div>
-        <label>ID</label>
-        <span th:text="${wish.id}">ID</span>
-    </div>
 </div>
-
+</div>
 </body>
 </html>

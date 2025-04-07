@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,9 +41,9 @@ public class WishController {
        return "redirect:/viewWishlist";
 }
 
-@GetMapping("/viewWishlist")
-    public String seeWishlist(@RequestParam("wishlistID") int id, Model model){
-    ArrayList<Wish> wishList = wishRepo.getAllWishesOnWishlist(id);
+@GetMapping("/wishlist/{id}")
+    public String viewWishlist(@PathVariable("id") int wishlistId, Model model){
+    ArrayList<Wish> wishList = wishRepo.getAllWishesOnWishlist(wishlistId);
     model.addAttribute("wishList", wishList);
     return "viewWishlist";
 }

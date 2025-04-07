@@ -58,13 +58,22 @@ public class WishRepo {
             statement.setString(4, wish.getDescription());
             statement.setString(5, wish.getImage());
 
+            statement.executeUpdate();
         } catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public void deleteWish() {
+    public void deleteWish(int id) {
         String sql = "DELETE FROM wishes WHERE id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
 
     }
 }
