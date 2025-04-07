@@ -8,35 +8,22 @@
 </head>
 <body>
 <div class="list">
-        <div th:each="wishlist : ${wishListList}" class="square">
-            <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">
-                <div>
-                    <label>Name:</label>
-                    <span th:text="${wishlist.name}">Name</span>
-                </div>
-                <div>
-                    <label>Date:</label>
-                    <span th:text="${wishlist.expirationDate}">Date</span>
-                </div>
-                <div>
-                    <label>Description:</label>
-                    <span th:text="${wishlist.description}">Description</span>
-                </div>
-            </a>
-        </div>
-    <div class="square">
-        <a th:href="@{/wishlist/{id}(id=${wishlistId})}">
+    <div th:each="wishlist : ${wishListList}" class="square">
+        <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">
             <div>
-                <label>List gesehen:</label>
+                <label>Name:</label>
+                <span th:text="${wishlist.name}">Name</span>
             </div>
             <div>
-                <label>Se Liste:</label>
+                <label>Date:</label>
+                <span th:text="${wishlist.expirationDate}">Date</span>
             </div>
             <div>
-                <label>View List:</label>
+                <label>Description:</label>
+                <span th:text="${wishlist.description}">Description</span>
             </div>
         </a>
     </div>
-    </div>
+</div>
 </body>
 </html>

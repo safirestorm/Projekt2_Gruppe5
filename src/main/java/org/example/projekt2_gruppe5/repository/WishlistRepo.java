@@ -71,31 +71,6 @@ public class WishlistRepo {
             e.printStackTrace();
         }
     }
-    public Wishlist getWishlistByUsername(String username) {
-        Wishlist wishlist = null;
-        String sql = "SELECT * FROM wishlist WHERE id = ?";
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(2, username);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    wishlist = new Wishlist();
-                    wishlist.setId(resultSet.getInt("id"));
-                    wishlist.setUserId(resultSet.getString("userID"));
-                    wishlist.setName(resultSet.getString("name"));
-                    wishlist.setExpirationDate(LocalDate.parse(resultSet.getString("type")));
-                    wishlist.setDescription(resultSet.getString("description"));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return wishlist;
-    }
     public void updateWishlist(Wishlist wishlist) {
         String sql = "UPDATE wishlists SET id = ?, userID = ?, name = ?, date = ?, description = ?, WHERE id = ?";
         try (Connection connection = dataSource.getConnection();
@@ -112,6 +87,32 @@ public class WishlistRepo {
             e.printStackTrace();
         }
     }
+    public Wishlist getWishlistById(int id) {
+        Wishlist wishlist = null;
+        String sql = "SELECT * FROM wishlists WHERE id = ?";  // Brug 'id' i SQL
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);  // Sæt id som første parameter
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    wishlist = new Wishlist();
+                    wishlist.setId(resultSet.getInt("id"));
+                    wishlist.setUserId(resultSet.getString("userID"));
+                    wishlist.setName(resultSet.getString("name"));
+                    wishlist.setExpirationDate(resultSet.getDate("date").toLocalDate());
+                    wishlist.setDescription(resultSet.getString("description"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return wishlist;
+    }
+
 
 }
 
