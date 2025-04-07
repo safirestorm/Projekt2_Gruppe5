@@ -1,6 +1,25 @@
-.body{
-    background-color: red;
-}
 .loginDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 3vmax;
+
+    width: 30vw;
+
+
     background-color: var(--cO);
+}
+.inputAndLabel {
+    width: 25vw;
+}
+
+input {
+    position: relative;
+    width: min(10px);
+    float: right;
+}
+button {
+    width: 10vw;
 }

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{style.css}">
-    <link rel="stylesheet" th:href="@{index.css}">
+    <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
+    <link rel="stylesheet" th:href="@{index.css}" href="../static/index.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -13,9 +13,9 @@
     <!-- this form is send from "/" -->
 <form action="/tryLoginUser" method="post">
     <label for="username">Username:</label>
-    <input type="text" id="username" name="username">
+    <input type="text" id="username" name="username"><br>
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password"><br>
     <button type="submit">Login</button>
     <!-- thymeleaf if condition - rooted in the LoginController -->
     <div th:if="${loginMessage}">
