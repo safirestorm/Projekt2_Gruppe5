@@ -15,6 +15,8 @@ public class WishlistRepo {
 
     @Autowired
     private DataSource dataSource; //laver fejl hvis appilication.properties er fejl
+    @Autowired
+    private UserRepo userRepo;
 
     public ArrayList<Wishlist> getAllWishlist() {
         ArrayList<Wishlist> wishListList = new ArrayList<>();
@@ -22,8 +24,12 @@ public class WishlistRepo {
 
         try (Connection connection = dataSource.getConnection(); // man laver en connecttion
              PreparedStatement statement = connection.prepareStatement(sql); // PreparedSatement sørger for at formateringen er korrekt til sql
-             ResultSet resultSet = statement.executeQuery()) { // ResultSet er måden java gemmer dataen der kommer tilbage fra databsen
+             ) { // ResultSet er måden java gemmer dataen der kommer tilbage fra databsen
 
+            statement.setString(1, userRepo.getCurrentUser().getUsername());
+
+
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Wishlist wishlist = new Wishlist();
                 wishlist.setId(resultSet.getInt("id"));
