@@ -1,3 +1,4 @@
+/*
 :root {
     --color-blue: #4A90E2;
     --color-purple: #9B59B6;
@@ -61,3 +62,33 @@ button:hover{
 #deny {
     background-color: var(--color-orange);
 }
+
+.frostedBox{
+    padding: 30px;
+    border-radius: 15px;
+    background: linear-gradient(to bottom right, rgba(255,255,255,.3), rgba(255,255,255,.1));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 2;
+}
+
+.frostedBox::before{
+    content: "";
+    position: absolute;
+    background-color: rgba(255,255,255,1);
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 16px;
+
+    mask: linear-gradient(#fff, rgba(0,0,0), rgba(0,0,0)) content-box,
+            linear-gradient(to bottom right, rgba(255,255,255,1), rgba(255,255,255,.1));
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 1px;
+
+    z-index: -1;
+}
+
+ */

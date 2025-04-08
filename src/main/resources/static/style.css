@@ -3,6 +3,141 @@
     --cB: #303030;
     --cW: #F8F8F8;
 
-font-family: Comic Sans;
+    font-family: sans-serif;
     color: var(--cB);
+}
+
+html{
+    font-family: sans-serif;
+}
+
+body{
+    background: rgb(9,9,121);
+    background: url("./img/olga-safronova-3hvpymDO7ZI-unsplash.jpg");
+    background-size: cover;
+}
+
+.pageContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frostedBox{
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    background: linear-gradient(to bottom right, rgba(255,255,255,.3), rgba(255,255,255,.2));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+.frostedBox::before{
+    content: "";
+    position: absolute;
+    background-color: rgba(255,255,255,1);
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 16px;
+
+    mask: linear-gradient(#fff, rgba(0,0,0), rgba(0,0,0)) content-box,
+    linear-gradient(to bottom right, rgba(255,255,255,1), rgba(255,255,255,.1));
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 1px;
+
+    z-index: -1;
+}
+
+.loginBox{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10vw;
+    min-width: 20vw;
+}
+
+.inputBox{
+    all: unset;
+    background-color: white;
+    height: 2rem;
+    width: 200px;
+    border-radius: 10px;
+    padding-left: 10px;
+    color: black;
+    z-index: 2;
+}
+
+.submitButton{
+    all:unset;
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #5c105c;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(255,255,255);
+    color: transparent;
+    z-index: 5;
+}
+
+.submitButton:hover{
+    color:white;
+    transition: .2s ease;
+    text-shadow: 0 0 0 rgba(255,255,255);
+}
+
+/*
+.submitButton::after{
+    content: "";
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    background-color: rgba(0,0,0,.2);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    z-index: 2;
+}
+
+ */
+
+.errorBox{
+    background-color: orange;
+    border-radius: 10px;
+    max-width: 20vw;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 10;
+
+    margin-bottom: 20px;
+}
+
+.userMessage{
+    z-index: 10;
+    background-color: #bef4be;
+    border-radius: 10px;
+    max-width: 20vw;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: darkgreen;
+
+    margin-bottom: 20px;
+}
+
+.loginForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

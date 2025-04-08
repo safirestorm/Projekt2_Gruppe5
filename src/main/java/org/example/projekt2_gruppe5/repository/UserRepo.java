@@ -34,7 +34,8 @@ DataSource dataSource;
         try(
                 Connection connection = dataSource.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
-        ){
+        )
+        {
             //Set placeholder values in statement to correct values
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
