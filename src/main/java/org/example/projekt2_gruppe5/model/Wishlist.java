@@ -18,6 +18,12 @@ public class Wishlist {
     }
     public Wishlist(){}
 
+    public Wishlist(String name, LocalDate expirationDate, String description) {
+        this.name = name;
+        this.expirationDate = expirationDate;
+        this.description = description;
+    }
+
     //Getters
     public int getId() {
         return id;

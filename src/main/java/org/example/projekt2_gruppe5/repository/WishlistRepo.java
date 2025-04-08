@@ -72,15 +72,14 @@ public class WishlistRepo {
         }
     }
     public void updateWishlist(Wishlist wishlist) {
-        String sql = "UPDATE wishlists SET id = ?, userID = ?, name = ?, date = ?, description = ?, WHERE id = ?";
+        String sql = "UPDATE wishlists SET userID = ?, name = ?, date = ?, description = ?, WHERE id = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, wishlist.getId());
-            statement.setString(2, wishlist.getUserId());
-            statement.setString(3, wishlist.getName());
-            statement.setString(4, String.valueOf(wishlist.getExpirationDate()));
-            statement.setString(5, wishlist.getDescription());
+            statement.setString(1, wishlist.getUserId());
+            statement.setString(2, wishlist.getName());
+            statement.setString(3, String.valueOf(wishlist.getExpirationDate()));
+            statement.setString(4, wishlist.getDescription());
 
             statement.executeUpdate();
         } catch (SQLException e) {
