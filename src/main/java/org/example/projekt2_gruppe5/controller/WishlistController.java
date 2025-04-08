@@ -52,4 +52,9 @@ public class WishlistController {
         System.out.println("Wishlist er gemt");
         return "redirect:/getUserPage";
     }
+    @PostMapping("deleteWish")
+    public String deleteWish(int id){
+        wishlistRepository.deleteWishlist(id);
+        return "redirect:/getUserPage";
+    }
 }

@@ -23,10 +23,14 @@
                 <span th:text="${wishlist.description}">Description</span>
             </div>
         </a>
+        <form th:action="@{/deleteWish}" method="post">
+            <input type="hidden" name="id" th:value="${wishlist.id}" />
+            <button type="submit">Delete Wishlist</button>
+        </form>
     </div>
 </div>
 
-<div class="buttons">
+<div class="square">
     <a th:href = "@{/getCreateWishlist}">
         <button type="button">Create a Wishlist</button>
     </a>
