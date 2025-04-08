@@ -23,7 +23,7 @@
                 <span th:text="${wishlist.description}">Description</span>
             </div>
         </a>
-        <form th:action="@{/deleteWish}" method="post">
+        <form th:action="@{/deleteWishlist}" method="post">
             <input type="hidden" name="id" th:value="${wishlist.id}" />
             <button type="submit">Delete Wishlist</button>
         </form>
