@@ -33,6 +33,10 @@
         <span th:text="${wish.description}">description</span>
     </div>
 </div>
+    <div class="buttons">
+        <a th:href="@{/createWishOnWishlist(id=${wishlistId})}">Add Wish</a>
+
+    </div>
 </div>
 </body>
 </html>

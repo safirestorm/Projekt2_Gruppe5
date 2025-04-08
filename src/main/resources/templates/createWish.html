@@ -10,8 +10,11 @@
 <div class="mainContent">
     <div class="formBox">
 
+        <h1>Create Wish</h1>
         <form th:action="@{/saveCreateWish}" method="post">
-            <h1>Create Wish</h1>
+            <!-- Gemmer wishlistId som hidden input -->
+            <input type="hidden" name="wishlistId" th:value="${wishlistId}" />
+
             <div class="inputField">
                 <label for="name">Product name</label>
                 <input type="text" id="name" name="name" placeholder="Enter name of product" required>

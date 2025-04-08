@@ -22,30 +22,38 @@ public class WishController {
     @Autowired
     WishService wishService;
 
-@GetMapping("/createWish")
-    public String createWish(){
+@GetMapping("/createWishOnWishlist")
+    public String createWish(@RequestParam("id") int wishlistId, Model model){
+    model.addAttribute("wishlistId", wishlistId);
     return "createWish";
 }
 
 @PostMapping("/saveCreateWish")
     public String postCreateWish(
         @RequestParam("name") String name,
-        @RequestParam("pris") int price,
+        @RequestParam("price") int price,
         @RequestParam("link") String link,
-        @RequestParam("description") String description){
+        @RequestParam("description") String description,
+        @RequestParam("wishlistId") int wishlistId){
 
        String image = wishService.getImage();
 
        Wish wish = new Wish(name, price, link, description, image);
-       wishRepo.saveWish(wish);
-       return "redirect:/viewWishlist";
+       wishRepo.saveWish(wish, wishlistId);
+       return "redirect:/wishlist/" + wishlistId;
 }
 
 @GetMapping("/wishlist/{id}")
     public String viewWishlist(@PathVariable("id") int wishlistId, Model model){
     ArrayList<Wish> wishList = wishRepo.getAllWishesOnWishlist(wishlistId);
     model.addAttribute("wishList", wishList);
+    model.addAttribute("wishlistId", wishlistId);
     return "viewWishlist";
+}
+
+@PostMapping("/deleteWish")
+    public String deleteWish(){
+    return "missing feature";
 }
 
 }

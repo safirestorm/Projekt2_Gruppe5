@@ -17,17 +17,21 @@ public class WishRepo {
     @Autowired
     DataSource dataSource;
 
+    // Få alle ønsker på en ønskeliste ud fra ønskelisteId
     public ArrayList<Wish> getAllWishesOnWishlist(int wishlistId) {
     ArrayList<Wish> wishList = new ArrayList<>();
+
+    // SQL forespørgsel
     String sql = "SELECT * FROM wishes WHERE wishlistID = ?";
 
-    try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)) {
+    try(Connection connection = dataSource.getConnection(); // Prøver at oprette forbindelse til databasen
+        PreparedStatement statement = connection.prepareStatement(sql)) { // Hvis forbindelsen bliver oprettet, sender vores SQL forespørsel
 
-        statement.setInt(1, wishlistId);
+        statement.setInt(1, wishlistId); // indsætter variabel ind i vores SQL forespørgsel
 
-        try (ResultSet resultSet = statement.executeQuery()) {
+        try (ResultSet resultSet = statement.executeQuery()) {  // returnerer resultatet af SQL forespøgslen
 
+            // Opretter objekter af resultatet og gemmer i liste
             while (resultSet.next()) {
                 Wish wish = new Wish();
                 wish.setWishId(resultSet.getInt("id"));
@@ -46,17 +50,20 @@ public class WishRepo {
     return wishList;
     }
 
-    public void saveWish(Wish wish) {
-        String sql = "INSERT INTO wishes (name, price, link, description, image) VALUES (?, ?, ?, ?, ?)";
+    // Gemme ønske på ønskeliste
+    public void saveWish(Wish wish, int wishlistId) {
+        // SQL forespørgsel
+        String sql = "INSERT INTO wishes (wishlistID, name, price, link, description, image) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);){
 
-            statement.setString(1, wish.getName());
-            statement.setInt(2, wish.getPrice());
-            statement.setString(3, wish.getLink());
-            statement.setString(4, wish.getDescription());
-            statement.setString(5, wish.getImage());
+            statement.setInt(1, wishlistId);
+            statement.setString(2, wish.getName());
+            statement.setInt(3, wish.getPrice());
+            statement.setString(4, wish.getLink());
+            statement.setString(5, wish.getDescription());
+            statement.setString(6, wish.getImage());
 
             statement.executeUpdate();
         } catch (SQLException e){
@@ -64,6 +71,7 @@ public class WishRepo {
         }
     }
 
+    // Slette et ønske ud fra id
     public void deleteWish(int id) {
         String sql = "DELETE FROM wishes WHERE id = ?";
 
