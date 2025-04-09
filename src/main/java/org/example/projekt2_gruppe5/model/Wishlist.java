@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Wishlist {
-    int id;
-    String name;
-    String description;
-    LocalDate expirationDate;
-    ArrayList<Wish> wishlist;
-    String userId;
+    private int id;
+    private String name;
+    private String description;
+    private LocalDate expirationDate;
+    private ArrayList<Wish> wishlist;
+    private String userId;
 
     //Contructers
 
@@ -25,47 +25,47 @@ public class Wishlist {
     }
 
     //Getters
-    private int getId() {
+    public int getId() {
         return id;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
-    private LocalDate getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    private ArrayList<Wish> getWishlist() {
+    public ArrayList<Wish> getWishlist() {
         return wishlist;
     }
-    private String getDescription() {
+    public String getDescription() {
         return description;
     }
-    private String getUserId() {
+    public String getUserId() {
         return userId;
     }
     //Setters
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    private void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    private void setWishlist(ArrayList<Wish> wishlist) {
+    public void setWishlist(ArrayList<Wish> wishlist) {
         this.wishlist = wishlist;
     }
-    private void setUserId(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 }
