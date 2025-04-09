@@ -84,4 +84,23 @@ public class WishRepo {
         }
 
     }
+
+    //Skift et ønskesReservationsStatus
+    public void switchReservedStatus(int wishID){
+        String selectSQL = "SELECT * FROM wishes WHERE id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(selectSQL)){
+            statement.setInt(1, wishID);
+            ResultSet resultSet = statement.getResultSet();
+
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+        String updateSQL = "UPDATE wishes SET reservedstatus=? WHERE id = ?";
+    }
 }

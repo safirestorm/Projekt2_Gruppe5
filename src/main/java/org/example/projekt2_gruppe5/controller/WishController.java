@@ -58,4 +58,13 @@ public class WishController {
     return "redirect:/wishlist/" + wishlistId;
 }
 
+@PostMapping("/reserveOrUnreserveWish")
+    public String reserveWish(@PathVariable("id") int wishlistId, @PathVariable("wishID") int wishID){
+
+    //wishRepo.switchReservedStatus(wishID)
+
+    return "redirect:/wishlist/" + wishlistId;
+}
+
+
 }
