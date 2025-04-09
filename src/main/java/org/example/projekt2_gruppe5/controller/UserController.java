@@ -16,10 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
 
     @GetMapping("/getCreateUser")
     public String getCreateUser(){

@@ -17,10 +17,10 @@ import java.util.ArrayList;
 public class WishController {
 
     @Autowired
-    WishRepo wishRepo;
+    private WishRepo wishRepo;
 
     @Autowired
-    WishService wishService;
+    private WishService wishService;
 
 @GetMapping("/createWishOnWishlist")
     public String createWish(@RequestParam("id") int wishlistId, Model model){
