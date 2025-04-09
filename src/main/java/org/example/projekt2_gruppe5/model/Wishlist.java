@@ -25,50 +25,47 @@ public class Wishlist {
     }
 
     //Getters
-    public int getId() {
+    private int getId() {
         return id;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 
-    public LocalDate getExpirationDate() {
+    private LocalDate getExpirationDate() {
         return expirationDate;
     }
-    public String getStringExpirationDate(LocalDate expirationDate) {
-        return expirationDate.toString();
-    }
 
-    public ArrayList<Wish> getWishlist() {
+    private ArrayList<Wish> getWishlist() {
         return wishlist;
     }
-    public String getDescription() {
+    private String getDescription() {
         return description;
     }
-    public String getUserId() {
+    private String getUserId() {
         return userId;
     }
     //Setters
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    private void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public void setWishlist(ArrayList<Wish> wishlist) {
+    private void setWishlist(ArrayList<Wish> wishlist) {
         this.wishlist = wishlist;
     }
-    public void setUserId(String userId) {
+    private void setUserId(String userId) {
         this.userId = userId;
     }
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 }
