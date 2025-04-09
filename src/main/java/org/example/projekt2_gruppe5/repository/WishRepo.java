@@ -1,6 +1,7 @@
 package org.example.projekt2_gruppe5.repository;
 
 import org.example.projekt2_gruppe5.model.Wish;
+import org.example.projekt2_gruppe5.service.WishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,8 @@ public class WishRepo {
 
     @Autowired
     DataSource dataSource;
+    @Autowired
+    private WishService wishService;
 
     // Få alle ønsker på en ønskeliste ud fra ønskelisteId
     public ArrayList<Wish> getAllWishesOnWishlist(int wishlistId) {
@@ -103,22 +106,29 @@ public class WishRepo {
         }
     }
 
-    //Skift et ønskesReservationsStatus
+    //Skift et ønskes ReservationsStatus
     public void switchReservedStatus(int wishID){
-        String selectSQL = "SELECT * FROM wishes WHERE id = ?";
+        String selectSQL = "SELECT reservedstatus FROM wishes WHERE id = ?";
+
+        String updateSQL = "UPDATE wishes SET reservedstatus=? WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(selectSQL)){
-            statement.setInt(1, wishID);
-            ResultSet resultSet = statement.getResultSet();
+            PreparedStatement updatestatement = connection.prepareStatement(updateSQL);){
 
+            if (wishService.isWishReserved(wishID, connection)){
+                updatestatement.setInt(1, 0);
+            }
+            else{
+                updatestatement.setInt(1, 1);
+            }
+
+            updatestatement.setInt(2, wishID);
+            updatestatement.executeUpdate();
 
         }
         catch (SQLException e){
             e.printStackTrace();
         }
 
-
-        String updateSQL = "UPDATE wishes SET reservedstatus=? WHERE id = ?";
     }
 }
