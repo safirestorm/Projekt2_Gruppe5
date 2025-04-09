@@ -69,7 +69,8 @@ public class WishController {
 @GetMapping("/getUpdateWish")
     public String updateWish(@RequestParam("id") int id, Model model){
     Wish wish = wishRepo.getWishById(id);
-    model.addAttribute(wish);
+    model.addAttribute("wish", wish);
+    model.addAttribute("wishlistId", wish.getWishlistId());
     return "updateWish";
 }
 

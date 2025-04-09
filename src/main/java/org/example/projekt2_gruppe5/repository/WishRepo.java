@@ -89,7 +89,7 @@ public class WishRepo {
 
     public Wish getWishById(int id) {
         Wish wish = null;
-        String sql = "SELECT FROM wishes WHERE id = ?";
+        String sql = "SELECT * FROM wishes WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -116,7 +116,7 @@ public class WishRepo {
     }
 
     public void updateWish(Wish wish) {
-        String sql = "UPDATE wishes SET name = ?, price = ?, link = ?, description = ?, WHERE wishID = ?";
+        String sql = "UPDATE wishes SET name = ?, price = ?, link = ?, description = ? WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);){

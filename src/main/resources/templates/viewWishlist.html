@@ -32,7 +32,7 @@
         <label>Description</label>
         <span th:text="${wish.description}">description</span>
     </div>
-    <a th:href="@{/getUpdateWish}">Edit Wish</a>
+    <a th:href="@{/getUpdateWish(id=${wish.wishId})}">Edit Wish</a>
     <form th:action="@{/deleteWish}" method="post">
         <input type="hidden" name="wishlistId" th:value="${wishlistId}" />
         <input type="hidden" name="id" th:value="${wish.wishId}" />
