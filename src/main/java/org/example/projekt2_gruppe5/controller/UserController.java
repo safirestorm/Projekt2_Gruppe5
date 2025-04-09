@@ -74,4 +74,12 @@ public class UserController {
         model.addAttribute("currentUser", currentUser);
         return "loginTest";
     }
+
+    @PostMapping("/getDeleteUser")
+    public String deleteUser() {
+        System.out.println("Registered click on getDeleteUser Button from brugerside");
+        userRepo.deleteUser(userRepo.getCurrentUser());
+        return "redirect:/";
+    }
 }
+

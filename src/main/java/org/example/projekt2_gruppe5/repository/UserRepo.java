@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,4 +106,71 @@ DataSource dataSource;
         return null;
     }
 
+    public void deleteUser(User user) {
+
+        // Get wishlist ID of all the users wishlists
+        ArrayList<Integer> wishlistIDs = new ArrayList<>();
+
+        String sqlGetWishlistIDs = "SELECT id FROM wishlists WHERE userID = ?";
+        try (
+                Connection connection = dataSource.getConnection();
+                PreparedStatement statementGetWLIDs = connection.prepareStatement(sqlGetWishlistIDs);
+                )
+        {
+            statementGetWLIDs.setString(1,user.getUsername());
+            ResultSet resultSetGetWLIDs = statementGetWLIDs.executeQuery();
+
+            // Add the IDs to the arraylist
+            while(resultSetGetWLIDs.next()) {
+                wishlistIDs.add(resultSetGetWLIDs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Delete the users wishes
+        for (Integer wishlistID : wishlistIDs) {
+        String sqlDeleteWishes = "DELETE FROM wishes WHERE wishlistID = ?";
+        try (
+                Connection connection = dataSource.getConnection();
+                PreparedStatement statementDeleteWishes = connection.prepareStatement(sqlDeleteWishes);
+                )
+        {
+            statementDeleteWishes.setInt(1,wishlistID);
+
+            statementDeleteWishes.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        }
+
+        // Delete all the users wishlists
+        String sqlDeleteWishlists = "DELETE FROM wishlists WHERE userID = ?";
+        try (
+                Connection connection = dataSource.getConnection();
+                PreparedStatement statementDeleteWishlists = connection.prepareStatement(sqlDeleteWishlists);
+                )
+        {
+            statementDeleteWishlists.setString(1, user.getUsername());
+
+            statementDeleteWishlists.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Delete user :(
+        String sqlDeleteUser = "DELETE FROM users WHERE username = ?";
+        try (
+                Connection connection = dataSource.getConnection();
+                PreparedStatement statementDeleteUser = connection.prepareStatement(sqlDeleteUser);
+                )
+        {
+            statementDeleteUser.setString(1, user.getUsername());
+
+            statementDeleteUser.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
