@@ -1,13 +1,13 @@
 package org.example.projekt2_gruppe5.model;
 
 public class Wish {
-    int wishId;
-    String name;
-    int price;
-    String link;
-    String description;
-    String image;
-    boolean isReserved;
+    private int wishId;
+    private String name;
+    private int price;
+    private String link;
+    private String description;
+    private String image;
+    private boolean isReserved;
     int wishlistId;
 
     public Wish(String name, int price, String link, String description, String image) {

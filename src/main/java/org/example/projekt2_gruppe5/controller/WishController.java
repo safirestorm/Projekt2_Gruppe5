@@ -48,12 +48,14 @@ public class WishController {
     ArrayList<Wish> wishList = wishRepo.getAllWishesOnWishlist(wishlistId);
     model.addAttribute("wishList", wishList);
     model.addAttribute("wishlistId", wishlistId);
+    //if !userOfList==currentuser: Model addattribute showReservedStatus
     return "viewWishlist";
 }
 
 @PostMapping("/deleteWish")
-    public String deleteWish(){
-    return "missing feature";
+    public String deleteWishFromWishlist(@RequestParam("id") int id, @RequestParam("wishlistId") int wishlistId){
+    wishRepo.deleteWish(id);
+    return "redirect:/wishlist/" + wishlistId;
 }
 
 }
