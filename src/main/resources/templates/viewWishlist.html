@@ -38,6 +38,15 @@
         <input type="hidden" name="id" th:value="${wish.wishId}" />
         <button type="submit">Delete Wish</button>
     </form>
+
+    <div class="reservationInfo" th:unless="${hideReservedInfo}">
+        <div class="reserveButton" th:if="${wish.isReserved()}">
+            <p>UNRESERVE</p>
+        </div>
+        <div class="unReserveButton" th:unless="${wish.isReserved()}">
+            <p>RESERVE</p>
+        </div>
+    </div>
 </div>
     <div class="buttons">
         <a th:href="@{/createWishOnWishlist(id=${wishlistId})}">Add Wish</a>
