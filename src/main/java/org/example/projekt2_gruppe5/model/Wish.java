@@ -21,6 +21,16 @@ public class Wish {
 
     public Wish() {}
 
+    public Wish(int id, String name, int price, String link, String description, String image) {
+        this.wishId = id;
+        this.name = name;
+        this.price = price;
+        this.link = link;
+        this.description = description;
+        this.image = image;
+        isReserved = false;
+    }
+
     public int getWishId() {
         return wishId;
     }

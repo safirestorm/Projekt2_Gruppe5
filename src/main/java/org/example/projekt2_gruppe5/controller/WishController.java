@@ -66,5 +66,26 @@ public class WishController {
     return "redirect:/wishlist/" + wishlistId;
 }
 
+@GetMapping("/getUpdateWish")
+    public String updateWish(@RequestParam("id") int id, Model model){
+    Wish wish = wishRepo.getWishById(id);
+    model.addAttribute(wish);
+    return "updateWish";
+}
 
+@PostMapping("/saveUpdateWish")
+    public String postUpdateWish(
+            @RequestParam("id") int id,
+            @RequestParam("wishlistId") int wishlistId,
+            @RequestParam("name") String name,
+            @RequestParam("price") int price,
+            @RequestParam("link") String link,
+            @RequestParam("description") String description){
+
+    String image = wishService.getImage();
+
+    Wish wish = new Wish(id, name, price, link, description, image);
+    wishRepo.updateWish(wish);
+    return "redirect:/wishlist/" + wishlistId;
+}
 }

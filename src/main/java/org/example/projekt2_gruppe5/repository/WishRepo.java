@@ -87,8 +87,36 @@ public class WishRepo {
         }
     }
 
-    public void updateWish(Wish wish, int id) {
-        String sql = "UPDATE wishes SET name = ?, price = ?, link = ?, description = ?, WHERE wishId = ?";
+    public Wish getWishById(int id) {
+        Wish wish = null;
+        String sql = "SELECT FROM wishes WHERE id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()) {  // returnerer resultatet af SQL forespøgslen
+                // Opretter objekter af resultatet
+                while (resultSet.next()) {
+                    wish = new Wish();
+                    wish.setWishId(resultSet.getInt("id"));
+                    wish.setName(resultSet.getString("name"));
+                    wish.setPrice(resultSet.getInt("price"));
+                    wish.setLink(resultSet.getString("link"));
+                    wish.setDescription(resultSet.getString("description"));
+                    wish.setImage(resultSet.getString("image"));
+                    wish.setReserved(resultSet.getBoolean("reservedstatus"));
+                }
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return wish;
+    }
+
+    public void updateWish(Wish wish) {
+        String sql = "UPDATE wishes SET name = ?, price = ?, link = ?, description = ?, WHERE wishID = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);){
