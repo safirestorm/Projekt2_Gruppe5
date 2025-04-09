@@ -82,7 +82,25 @@ public class WishRepo {
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
 
+    public void updateWish(Wish wish, int id) {
+        String sql = "UPDATE wishes SET name = ?, price = ?, link = ?, description = ?, WHERE wishId = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql);){
+
+            statement.setString(1, wish.getName());
+            statement.setInt(2, wish.getPrice());
+            statement.setString(3, wish.getLink());
+            statement.setString(4, wish.getDescription());
+            statement.setString(5, wish.getImage());
+            statement.setInt(6, wish.getWishId());
+
+            statement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     //Skift et ønskesReservationsStatus
