@@ -32,19 +32,26 @@
         <label>Description</label>
         <span th:text="${wish.description}">description</span>
     </div>
-    <a th:href="@{/getUpdateWish(id=${wish.wishId})}">Edit Wish</a>
-    <form th:action="@{/deleteWish}" method="post">
-        <input type="hidden" name="wishlistId" th:value="${wishlistId}" />
-        <input type="hidden" name="id" th:value="${wish.wishId}" />
-        <button type="submit">Delete Wish</button>
-    </form>
 
-    <div class="reservationInfo" th:unless="${hideReservedInfo}">
+    <div class="userControls" th:if="${isOwner}">
+        <a th:href="@{/getUpdateWish(id=${wish.wishId})}">Edit Wish</a>
+        <form th:action="@{/deleteWish}" method="post">
+            <input type="hidden" name="wishlistId" th:value="${wishlistId}" />
+            <input type="hidden" name="id" th:value="${wish.wishId}" />
+            <button type="submit">Delete Wish</button>
+        </form>
+    </div>
+
+    <div class="reservationInfo" th:unless="${hideReservedStatus}">
         <div class="reserveButton" th:if="${wish.isReserved()}">
-            <p>UNRESERVE</p>
+            <form th:action="@{'/reserveOrUnreserveWish/' + ${wishlistId} + 'gift' + ${wish.wishId}}" method="post">
+                <button type="submit">Unreserve</button>
+            </form>
         </div>
         <div class="unReserveButton" th:unless="${wish.isReserved()}">
-            <p>RESERVE</p>
+            <form th:action="@{'/reserveOrUnreserveWish/' + ${wishlistId} + 'gift' + ${wish.wishId}}" method="post">
+                <button type="submit">Reserve</button>
+            </form>
         </div>
     </div>
 </div>

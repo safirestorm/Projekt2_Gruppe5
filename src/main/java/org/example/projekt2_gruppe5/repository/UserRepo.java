@@ -57,6 +57,7 @@ DataSource dataSource;
 
     public User getCurrentUser(){
         User user = loggedInUsers.get(httpSession.getId());
+
         return user;
     }
 

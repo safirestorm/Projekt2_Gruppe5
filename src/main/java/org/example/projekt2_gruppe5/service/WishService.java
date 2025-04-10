@@ -39,7 +39,11 @@ public class WishService {
         try(PreparedStatement statement = connection.prepareStatement(selectSQL);){
 
             statement.setInt(1,wishID);
-            ResultSet resultSet = statement.getResultSet();
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println(resultSet);
+
+            resultSet.next();
 
             temp = resultSet.getBoolean("reservedstatus");
         }

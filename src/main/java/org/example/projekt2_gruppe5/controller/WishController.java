@@ -1,7 +1,9 @@
 package org.example.projekt2_gruppe5.controller;
 
 import org.example.projekt2_gruppe5.model.Wish;
+import org.example.projekt2_gruppe5.repository.UserRepo;
 import org.example.projekt2_gruppe5.repository.WishRepo;
+import org.example.projekt2_gruppe5.repository.WishlistRepo;
 import org.example.projekt2_gruppe5.service.WishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +23,12 @@ public class WishController {
 
     @Autowired
     private WishService wishService;
+    @Autowired
+    private UserRepo userRepo;
+    @Autowired
+    private WishlistRepo wishlistRepo;
 
-@GetMapping("/createWishOnWishlist")
+    @GetMapping("/createWishOnWishlist")
     public String createWish(@RequestParam("id") int wishlistId, Model model){
     model.addAttribute("wishlistId", wishlistId);
     return "createWish";
@@ -48,7 +54,26 @@ public class WishController {
     ArrayList<Wish> wishList = wishRepo.getAllWishesOnWishlist(wishlistId);
     model.addAttribute("wishList", wishList);
     model.addAttribute("wishlistId", wishlistId);
-    //if !userOfList==currentuser: Model addattribute showReservedStatus
+
+    try {
+        if (userRepo.getCurrentUser().getUsername().equalsIgnoreCase(wishlistRepo.getOwnerUserName(wishlistId))) {
+            System.out.println("Owner of wishlist is: " + wishlistRepo.getOwnerUserName(wishlistId));
+            System.out.println("Current user is: " + userRepo.getCurrentUser().getUsername());
+            model.addAttribute("hideReservedStatus", true);
+
+            if (userRepo.getCurrentUser().getUsername().equalsIgnoreCase(wishlistRepo.getOwnerUserName(wishlistId))){
+                System.out.println("Owner of wishlist is: " + wishlistRepo.getOwnerUserName(wishlistId));
+                System.out.println("Current user is: " + userRepo.getCurrentUser().getUsername());
+                model.addAttribute("isOwner", true);
+            }
+        }
+    }
+    catch (NullPointerException e){
+        System.out.println("No user is logged in");
+
+    }
+
+
     return "viewWishlist";
 }
 
@@ -58,10 +83,12 @@ public class WishController {
     return "redirect:/wishlist/" + wishlistId;
 }
 
-@PostMapping("/reserveOrUnreserveWish")
+@PostMapping("/reserveOrUnreserveWish/{id}gift{wishID}")
     public String reserveWish(@PathVariable("id") int wishlistId, @PathVariable("wishID") int wishID){
 
-    //wishRepo.switchReservedStatus(wishID)
+    System.out.println("Prøver at ændre reservations status på ønske");
+    wishRepo.switchReservedStatus(wishID);
+    System.out.println("Har ændret status på ønske");
 
     return "redirect:/wishlist/" + wishlistId;
 }
