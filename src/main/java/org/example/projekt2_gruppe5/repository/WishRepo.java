@@ -87,6 +87,19 @@ public class WishRepo {
         }
     }
 
+    // Slette alle ønsker på ønskeliste
+    public void deleteAllWishesOnWishlist(int id) {
+        String sql = "DELETE FROM wishes WHERE wishlistID = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public Wish getWishById(int id) {
         Wish wish = null;
         String sql = "SELECT * FROM wishes WHERE id = ?";
