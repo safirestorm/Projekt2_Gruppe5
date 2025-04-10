@@ -4,48 +4,31 @@
     <meta charset="UTF-8">
     <title>Create User</title>
     <link rel="stylesheet" th:href="@{/style.css}" href="../static/style.css">
-    <link rel="stylesheet" th:href="@{/createUser.css}" href="../static/createUser.css">
 </head>
 <body>
-    <div class="mainContent">
-        <div class="formBoxBorder">
-        <div class="formBox">
+    <div class="pageContent">
+        <div class="frostedBox loginBox">
 
             <h1>Indtast venligst dine brugeroplysninger</h1>
 
             <h2 th:if="${errorMessage}" th:text="${errorMessage}" class="errorMessage"></h2>
 
-            <form th:action="@{/saveCreateUser}" method="post" class="createUserForm">
+            <form th:action="@{/saveCreateUser}" method="post" class="loginForm">
 
-                <div class="inputField">
-                <label for="userName">Username</label>
-                <input type="text" id="userName" name="userName" placeholder="Enter your username" required>
-                </div>
-
-                <div class="inputField">
-                <label for="firstName">First name</label>
-                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
-                </div>
-
-                <div class="inputField">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
-                </div>
-
-                <div class="inputField">
-                <label for="passWord">Password</label>
-                <input type="text" id="passWord" name="passWord" placeholder="Enter the password you want" required>
-                </div>
-
-                <div class="inputField">
-                <label for="passWordControl">Re-enter Password</label>
-                <input type="text" id="passWordControl" name="passWordControl" placeholder="Re-enter your password" required>
-                </div>
+                <input type="text" id="userName" name="userName" placeholder="Enter your username" required class="inputBox">
+                <br>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required class="inputBox">
+                <br>
+                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required class="inputBox">
+                <br>
+                <input type="text" id="passWord" name="passWord" placeholder="Enter the password you want" required class="inputBox">
+                <br>
+                <input type="text" id="passWordControl" name="passWordControl" placeholder="Re-enter your password" required class="inputBox">
+                <br>
 
                 <button type="submit" class="submitButton">submit</button>
             </form>
-        </div> <!-- formBox ends -->
-        </div>
-    </div> <!-- mainContent ends -->
+        </div> <!-- frostedBox ends -->
+    </div> <!-- pageContent ends -->
 </body>
 </html>

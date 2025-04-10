@@ -27,13 +27,9 @@
                 </div>
 
             <form action="/tryLoginUser" method="post" class="loginForm">
-                <div class="sameLine">
                     <input type="text" id="username" name="username" placeholder="Enter your username" class="inputBox">
-                </div>
                 <br>
-                <div class="sameLine">
                     <input type="password" id="password" name="password" placeholder="Enter your password" class="inputBox">
-                </div>
                 <br>
                 <button type="submit" class="submitButton">Login</button>
                     <!-- thymeleaf if condition - rooted in the LoginController -->
@@ -44,9 +40,9 @@
                     <p th:text="${loginError}"></p>
                     </div>
             </form>
+                <br>
                 <!-- Button for create User -->
                 <a th:href="@{/getCreateUser}" class="createUserButton">Create a new user</a>
-                <a th:href="@{/getCurrentUser}" class="createUserButton">See the current user</a>
             </div> <!-- loginDiv ends -->
         </div>
 

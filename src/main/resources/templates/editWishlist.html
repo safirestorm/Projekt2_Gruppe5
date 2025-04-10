@@ -2,31 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>editWishlist</title>
+    <title>Edit Wishlist</title>
+    <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
 </head>
 <body>
 
-<div class="mainContent">
-    <div class="formBox">
-        <form th:action="@{/saveEditWishlist}" method="post">
+<div class="pageContent">
+    <div class="frostedBox loginBox">
+
+        <h1>Edit Wishlist</h1>
+        <form th:action="@{/saveEditWishlist}" method="post" class="loginForm">
             <input type="hidden" name="id" th:value="${wishlist.id}" />
 
-            <h1>Edit Wishlist</h1>
-            <div class="inputField">
-                <label for="name">Wishlist Name</label>
-                <input type="text" id="name" name="name" th:value="${wishlist.name}" required>
-            </div>
-
-            <div class="inputField">
-                <label for="expirationDate">Expiration date</label>
-                <input type="date" id="expirationDate" name="expirationDate" th:value="${wishlist.expirationDate}" required>
-            </div>
-
-            <div class="inputField">
-                <label for="description">Description</label>
-                <input type="text" id="description" name="description" th:value="${wishlist.description}">
-            </div>
-
+                <input type="text" id="name" name="name" th:value="${wishlist.name}" required class="inputBox">
+           <br>
+                <input type="date" id="expirationDate" name="expirationDate" th:value="${wishlist.expirationDate}" required class="inputBox">
+            <br>
+                <input type="text" id="description" name="description" th:value="${wishlist.description}" class="inputBox">
+          <br>
             <button type="submit" class="submitButton">Save Changes</button>
         </form>
     </div>

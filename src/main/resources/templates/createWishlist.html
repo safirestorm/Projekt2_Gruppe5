@@ -4,28 +4,19 @@
     <meta charset="UTF-8">
     <title>createWishlist</title>
     <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
-    <link rel="stylesheet" th:href="@{createUser.css}" href="../static/createUser.css">
 </head>
 <body>
-<div class="mainContent">
-    <div class="formBox">
-        <form th:action="@{/saveCreateWishlist}" method="post">
+<div class="pageContent">
+    <div class="frostedBox loginBox">
+        <form th:action="@{/saveCreateWishlist}" method="post" class="loginForm">
             <h1>Create Wishlist</h1>
-            <div class="inputField">
-                <label for="name">Wishlist Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter name of wishlist" required>
-            </div>
 
-            <div class="inputField">
-                <label for="expirationDate">Expiration date</label>
-                <input type="date" id="expirationDate" name="expirationDate" placeholder="Enter exipiration date" required>
-            </div>
-
-            <div class="inputField">
-                <label for="description">Description</label>
-                <input type="text" id="description" name="description" placeholder="Enter description">
-            </div>
-
+                <input type="text" id="name" name="name" placeholder="Enter name of wishlist" required class="inputBox">
+           <br>
+                <input type="date" id="expirationDate" name="expirationDate" placeholder="Enter exipiration date" required class="inputBox">
+           <br>
+                <input type="text" id="description" name="description" placeholder="Enter description (optional)" class="inputBox">
+           <br>
             <button type="submit" class="submitButton">Create Wishlist</button>
         </form>
     </div>
