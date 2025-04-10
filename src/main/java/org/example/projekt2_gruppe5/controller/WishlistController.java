@@ -3,6 +3,7 @@ package org.example.projekt2_gruppe5.controller;
 import org.example.projekt2_gruppe5.model.Wish;
 import org.example.projekt2_gruppe5.model.Wishlist;
 import org.example.projekt2_gruppe5.repository.UserRepo;
+import org.example.projekt2_gruppe5.repository.WishRepo;
 import org.example.projekt2_gruppe5.repository.WishlistRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ public class WishlistController {
     private WishlistRepo wishlistRepository;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private WishRepo wishRepo;
 
     @GetMapping("/getUserPage")
     public String showWishlists(Model model) {
@@ -54,6 +57,7 @@ public class WishlistController {
     }
     @PostMapping("deleteWishlist")
     public String deleteWish(int id){
+        wishRepo.deleteAllWishesOnWishlist(id);
         wishlistRepository.deleteWishlist(id);
         return "redirect:/getUserPage";
     }
