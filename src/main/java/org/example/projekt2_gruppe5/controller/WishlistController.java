@@ -57,4 +57,27 @@ public class WishlistController {
         wishlistRepository.deleteWishlist(id);
         return "redirect:/getUserPage";
     }
+    @GetMapping("/getEditWishlist")
+    public String showEditForm(@RequestParam int id, Model model) {
+        Wishlist wishlist = wishlistRepository.getWishlistById(id);
+        model.addAttribute("wishlist", wishlist);
+        return "editWishlist";
+    }
+    @PostMapping("/saveEditWishlist")
+    public String editCreateWishlist
+            (@RequestParam("id") int id,
+            @RequestParam("name") String name,
+            @RequestParam("expirationDate") LocalDate date,
+            @RequestParam("description") String description){
+        System.out.println("vi modtager parametererne");
+        Wishlist wishlist = wishlistRepository.getWishlistById(id);
+        wishlist.setName(name);
+        wishlist.setDescription(description);
+        wishlist.setExpirationDate(date);
+
+        System.out.println("prøver at gemme ænringerne i din wishlist");
+        wishlistRepository.updateWishlist(wishlist);
+        System.out.println("Wishlist er gemt");
+        return "redirect:/getUserPage";
+    }
 }
