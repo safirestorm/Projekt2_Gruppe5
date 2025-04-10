@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="../static/brugerside.css" th:href="@{/brugerside.css}">
 </head>
 <body>
+<div class="header">
+<button>Mine Lister</button>
+<button>GivMig</button>
+<button>Log ud</button>
+</div>
+
 <div class="list">
     <div th:each="wishlist : ${wishListList}" class="square">
         <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">
@@ -31,6 +37,7 @@
             <input type="hidden" name="id" th:value="${wishlist.id}" />
             <button type="submit">Rediger Ønskeliste</button>
         </form>
+
     </div>
 </div>
 
