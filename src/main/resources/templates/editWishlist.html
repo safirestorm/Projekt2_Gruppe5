@@ -11,20 +11,20 @@
         <form th:action="@{/saveEditWishlist}" method="post">
             <input type="hidden" name="id" th:value="${wishlist.id}" />
 
-            <h1>Create Wishlist</h1>
+            <h1>Edit Wishlist</h1>
             <div class="inputField">
                 <label for="name">Wishlist Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter new name of wishlist" required>
+                <input type="text" id="name" name="name" th:value="${wishlist.name}" required>
             </div>
 
             <div class="inputField">
                 <label for="expirationDate">Expiration date</label>
-                <input type="date" id="expirationDate" name="expirationDate" placeholder="Enter new exipiration date" required>
+                <input type="date" id="expirationDate" name="expirationDate" th:value="${wishlist.expirationDate}" required>
             </div>
 
             <div class="inputField">
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description" placeholder="Enter new description">
+                <input type="text" id="description" name="description" th:value="${wishlist.description}">
             </div>
 
             <button type="submit" class="submitButton">Save Changes</button>
