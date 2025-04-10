@@ -112,6 +112,24 @@ public class WishlistRepo {
         return wishlist;
     }
 
+    public String getOwnerUserName(int wishListID){
+        String sql = "SELECT userID FROM wishlists WHERE id = ?";
+
+        String username = "ERROR";
+
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, wishListID);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            username = resultSet.getString("userID");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return username;
+    }
+
 
 }
 

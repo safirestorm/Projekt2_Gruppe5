@@ -158,9 +158,11 @@ public class WishRepo {
 
             if (wishService.isWishReserved(wishID, connection)){
                 updatestatement.setInt(1, 0);
+                System.out.println("Wish was reserved");
             }
             else{
                 updatestatement.setInt(1, 1);
+                System.out.println("Wish was not reserved");
             }
 
             updatestatement.setInt(2, wishID);
