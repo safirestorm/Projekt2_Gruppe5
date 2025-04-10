@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>editWishlist</title>
+</head>
+<body>
+
+<div class="mainContent">
+    <div class="formBox">
+        <form th:action="@{/saveEditWishlist}" method="post">
+            <input type="hidden" name="id" th:value="${wishlist.id}" />
+
+            <h1>Create Wishlist</h1>
+            <div class="inputField">
+                <label for="name">Wishlist Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter new name of wishlist" required>
+            </div>
+
+            <div class="inputField">
+                <label for="expirationDate">Expiration date</label>
+                <input type="date" id="expirationDate" name="expirationDate" placeholder="Enter new exipiration date" required>
+            </div>
+
+            <div class="inputField">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" placeholder="Enter new description">
+            </div>
+
+            <button type="submit" class="submitButton">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
