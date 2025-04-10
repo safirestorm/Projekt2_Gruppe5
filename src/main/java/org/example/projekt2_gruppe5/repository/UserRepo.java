@@ -108,70 +108,71 @@ DataSource dataSource;
     }
 
     public void deleteUser(User user) {
+        ArrayList<Integer> wishlistIds = new ArrayList<>();
 
-        // Get wishlist ID of all the users wishlists
-        ArrayList<Integer> wishlistIDs = new ArrayList<>();
+        String getWishlistIDs = "SELECT id FROM wishlists WHERE userID = ?";
+        String deleteWishes = "DELETE FROM wishes WHERE wishlistID = ?";
+        String deleteWishlists = "DELETE FROM wishlists WHERE userID = ?";
+        String deleteUser = "DELETE FROM users WHERE username = ?";
 
-        String sqlGetWishlistIDs = "SELECT id FROM wishlists WHERE userID = ?";
-        try (
-                Connection connection = dataSource.getConnection();
-                PreparedStatement statementGetWLIDs = connection.prepareStatement(sqlGetWishlistIDs);
-                )
-        {
-            statementGetWLIDs.setString(1,user.getUsername());
-            ResultSet resultSetGetWLIDs = statementGetWLIDs.executeQuery();
 
-            // Add the IDs to the arraylist
-            while(resultSetGetWLIDs.next()) {
-                wishlistIDs.add(resultSetGetWLIDs.getInt("id"));
+        try (Connection connection = dataSource.getConnection()) {
+
+            // Starts transaction
+            connection.setAutoCommit(false);
+
+            // Get wishlist IDs and add them to an arraylist
+
+            // Make prepared statement - avoid injections
+            try (PreparedStatement psGetWishlistIDs = connection.prepareStatement(getWishlistIDs)) {
+                psGetWishlistIDs.setString(1, user.getUsername());
+
+                // Add ids to a resultset - then add them to an arraylist
+                try (ResultSet resultSetGetWishlistIDs = psGetWishlistIDs.executeQuery()) {
+                    while (resultSetGetWishlistIDs.next()) {
+                        wishlistIds.add(resultSetGetWishlistIDs.getInt("id"));
+                    }
+                }
             }
+
+            // Delete wishes based on wishlist IDs in the arraylist
+
+            try (PreparedStatement psDeleteWishes = connection.prepareStatement(deleteWishes)) {
+
+                // For all ids in the arraylist, set the wishlist ID and delete wishes that match
+                for (Integer id : wishlistIds) {
+                    psDeleteWishes.setInt(1, id);
+                    psDeleteWishes.executeUpdate();
+                }
+            }
+
+            // Delete wishlists
+
+            try (PreparedStatement psDeleteWishlist = connection.prepareStatement(deleteWishlists)) {
+                psDeleteWishlist.setString(1, user.getUsername());
+                psDeleteWishlist.executeUpdate();
+            }
+
+            // Delete user
+
+            try (PreparedStatement psDeleteUser = connection.prepareStatement(deleteUser)) {
+                psDeleteUser.setString(1, user.getUsername());
+                psDeleteUser.executeUpdate();
+            }
+
+            // End transaction
+            connection.commit();
+
         } catch (SQLException e) {
             e.printStackTrace();
-        }
 
-        // Delete the users wishes
-        for (Integer wishlistID : wishlistIDs) {
-        String sqlDeleteWishes = "DELETE FROM wishes WHERE wishlistID = ?";
-        try (
-                Connection connection = dataSource.getConnection();
-                PreparedStatement statementDeleteWishes = connection.prepareStatement(sqlDeleteWishes);
-                )
-        {
-            statementDeleteWishes.setInt(1,wishlistID);
-
-            statementDeleteWishes.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        }
-
-        // Delete all the users wishlists
-        String sqlDeleteWishlists = "DELETE FROM wishlists WHERE userID = ?";
-        try (
-                Connection connection = dataSource.getConnection();
-                PreparedStatement statementDeleteWishlists = connection.prepareStatement(sqlDeleteWishlists);
-                )
-        {
-            statementDeleteWishlists.setString(1, user.getUsername());
-
-            statementDeleteWishlists.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // Delete user :(
-        String sqlDeleteUser = "DELETE FROM users WHERE username = ?";
-        try (
-                Connection connection = dataSource.getConnection();
-                PreparedStatement statementDeleteUser = connection.prepareStatement(sqlDeleteUser);
-                )
-        {
-            statementDeleteUser.setString(1, user.getUsername());
-
-            statementDeleteUser.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            // If the transaction fails, it will try to rollback so no queries are excecuted
+            try (
+                    Connection connection = dataSource.getConnection()) {
+                connection.rollback();
+            } catch (SQLException rollback) {
+                rollback.printStackTrace();
+            }
         }
     }
 }
