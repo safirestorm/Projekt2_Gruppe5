@@ -28,12 +28,8 @@
         <p style="font-weight: bold" >Nyttige knapper</p>
 
         <!-- Knapperne -->
-            <a th:href="@{/getCreateWishlist}">
-                <button type="button" class="submitButton2">Opret Ønskeliste</button>
-            </a>
-
         <form th:action="@{/getDeleteUser}" method="post">
-            <button type="submit" class="submitButton2">Slet bruger</button>
+            <button type="submit" class="styledButton">Slet bruger</button>
         </form>
     </div>
 
@@ -58,14 +54,22 @@
 
                 <form th:action="@{/deleteWishlist}" method="post">
                     <input type="hidden" name="id" th:value="${wishlist.id}" />
-                    <button type="submit" class="submitButton2">Slet Ønskeliste</button>
+                    <button type="submit" class="deleteButton">X</button>
                 </form>
+
+                <a th:href="@{/wishlist/{id}(id=${wishlist.id})}" class="styledButton openButton">Open</a>
 
                 <form th:action="@{/getEditWishlist}" method="get">
                     <input type="hidden" name="id" th:value="${wishlist.id}" />
-                    <button type="submit" class="submitButton2">Rediger Ønskeliste</button>
+                    <button type="submit" class="styledButton editButton">!</button>
                 </form>
             </div>
+            <div class="frostedBox equalSize createWishlistBox">
+                <a th:href="@{/getCreateWishlist}" class="styledButton">
+                    Opret ønskeliste
+                </a>
+            </div>
+
         </div>
     </div>
 
