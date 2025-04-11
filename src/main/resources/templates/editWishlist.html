@@ -18,6 +18,10 @@
 <div class="pageContent">
     <div class="frostedBox loginBox">
 
+        <a th:href="@{/getUserPage}" class="styledButton backButton">
+            tilbage
+        </a>
+
         <h1>Edit Wishlist</h1>
         <form th:action="@{/saveEditWishlist}" method="post" class="loginForm">
             <input type="hidden" name="id" th:value="${wishlist.id}" />
@@ -28,7 +32,7 @@
             <br>
                 <input type="text" id="description" name="description" th:value="${wishlist.description}" class="inputBox">
           <br>
-            <button type="submit" class="submitButton">Save Changes</button>
+            <button type="submit" class="styledButton">Save Changes</button>
         </form>
     </div>
 </div>

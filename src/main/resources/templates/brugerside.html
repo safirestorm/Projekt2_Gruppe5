@@ -25,11 +25,11 @@
     <div class="sidebar frostedBox">
         <p>Nyttige knapper</p>
             <a th:href="@{/getCreateWishlist}">
-                <button type="button" class="submitButton2">Create a Wishlist</button>
+                <button type="button" class="styledButton">Create a Wishlist</button>
             </a>
 
         <form th:action="@{/getDeleteUser}" method="post">
-            <button type="submit" class="submitButton2">Delete user</button>
+            <button type="submit" class="styledButton">Delete user</button>
         </form>
     </div>
 
@@ -54,12 +54,12 @@
 
                 <form th:action="@{/deleteWishlist}" method="post">
                     <input type="hidden" name="id" th:value="${wishlist.id}" />
-                    <button type="submit" class="submitButton2">Delete Wishlist</button>
+                    <button type="submit" class="styledButton">Delete Wishlist</button>
                 </form>
 
                 <form th:action="@{/getEditWishlist}" method="get">
                     <input type="hidden" name="id" th:value="${wishlist.id}" />
-                    <button type="submit" class="submitButton2">Rediger Ønskeliste</button>
+                    <button type="submit" class="styledButton">Rediger Ønskeliste</button>
                 </form>
             </div>
         </div>
