@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Ønskeliste</title>
     <link rel="stylesheet" th:href="@{/style.css}" href="../static/style.css">
+    <link rel="stylesheet" href="../static/brugerside.css" th:href="@{/brugerside.css}">
 
 </head>
 <body>
@@ -11,38 +12,40 @@
 <div class="header">
     <form th:action="@{/getUserPage}" method="get">
         <button type="submit">Mine Lister</button></form>
-    <form th:action="@{/getUserPage}" method="get">
-        <button>GivMig</button></form>
+    <p class="givmigLogo">Giv Mig</p>
     <form th:action="@{/logout}" method="get">
         <button>Log ud</button></form>
 </div>
 
-<div class="pageContent">
-<div class="frostedBox" th:each="wish : ${wishList}">
-    <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image">
+<!-- Hovedstruktur: content -->
+<div class="main">
+    <div class="content">
+        <div class="list">
+<div class="frostedBox wishSize" th:each="wish : ${wishList}">
+    <img th:src="@{'/img/' + ${wish.image}}" alt="Gave billede">
     <div>
-        <label>Produkt navn</label>
+        <label>Produkt navn: </label>
         <span th:text="${wish.name}">Produkt navn</span>
     </div>
     <div>
-        <label>Pris</label>
+        <label>Pris: </label>
         <span th:text="${wish.price}">Pris</span>
     </div>
     <div>
-        <label>Link</label>
+        <label>Link: </label>
         <span th:text="${wish.link}">Link</span>
     </div>
     <div>
-        <label>Beskrivelse</label>
+        <label>Beskrivelse: </label>
         <span th:text="${wish.description}">Beskrivelse</span>
     </div>
 
     <div class="userControls" th:if="${isOwner}">
-        <a th:href="@{/getUpdateWish(id=${wish.wishId})}">Edit Wish</a>
+        <a th:href="@{/getUpdateWish(id=${wish.wishId})}" class="styledButton editButton">!</a>
         <form th:action="@{/deleteWish}" method="post">
             <input type="hidden" name="wishlistId" th:value="${wishlistId}" />
             <input type="hidden" name="id" th:value="${wish.wishId}" />
-            <button type="submit">Delete Wish</button>
+            <button type="submit" class="deleteButton">X</button>
         </form>
     </div>
 
@@ -54,14 +57,16 @@
         </div>
         <div class="unReserveButton" th:unless="${wish.isReserved()}">
             <form th:action="@{'/reserveOrUnreserveWish/' + ${wishlistId} + 'gift' + ${wish.wishId}}" method="post">
-                <button type="submit">Reserve</button>
+                <button type="submit">Reserver</button>
             </form>
         </div>
     </div>
 </div>
     <div class="buttons">
-        <a th:href="@{/createWishOnWishlist(id=${wishlistId})}">Tilføj Ønske</a>
+        <a th:href="@{/createWishOnWishlist(id=${wishlistId})}" class="styledButton">Tilføj Ønske</a>
 
+    </div>
+    </div>
     </div>
 </div>
 </body>

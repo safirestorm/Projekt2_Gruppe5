@@ -78,6 +78,24 @@
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
+.frostedBox.wishSize {
+    width: 30vw;
+    height: 30vw;
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 270px;
+    max-height: 270px;
+
+}
+
+.frostedBox.wishSize img {
+    width: 60%;
+    height: 60%;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
 /* Create Wishlist-boksen i sidebar */
 .createbox {
     width: 100%;
