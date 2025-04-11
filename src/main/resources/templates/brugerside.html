@@ -23,13 +23,17 @@
 
     <!-- Sidebar -->
     <div class="sidebar frostedBox">
-        <p>Nyttige knapper</p>
+        <p style="font-size: 18px; font-weight: bold;" th:text="${currentUser.getUsername()}"></p>
+
+        <p style="font-weight: bold" >Nyttige knapper</p>
+
+        <!-- Knapperne -->
             <a th:href="@{/getCreateWishlist}">
-                <button type="button" class="submitButton2">Create a Wishlist</button>
+                <button type="button" class="submitButton2">Opret Ønskeliste</button>
             </a>
 
         <form th:action="@{/getDeleteUser}" method="post">
-            <button type="submit" class="submitButton2">Delete user</button>
+            <button type="submit" class="submitButton2">Slet bruger</button>
         </form>
     </div>
 
@@ -40,21 +44,21 @@
                 <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">
                     <div>
                         <label>Name:</label>
-                        <span th:text="${wishlist.name}">Name</span>
+                        <span th:text="${wishlist.name}">Navn</span>
                     </div>
                     <div>
                         <label>Date:</label>
-                        <span th:text="${wishlist.expirationDate}">Date</span>
+                        <span th:text="${wishlist.expirationDate}">Dato</span>
                     </div>
                     <div>
                         <label>Description:</label>
-                        <span th:text="${wishlist.description}">Description</span>
+                        <span th:text="${wishlist.description}">Beskrivelse</span>
                     </div>
                 </a>
 
                 <form th:action="@{/deleteWishlist}" method="post">
                     <input type="hidden" name="id" th:value="${wishlist.id}" />
-                    <button type="submit" class="submitButton2">Delete Wishlist</button>
+                    <button type="submit" class="submitButton2">Slet Ønskeliste</button>
                 </form>
 
                 <form th:action="@{/getEditWishlist}" method="get">

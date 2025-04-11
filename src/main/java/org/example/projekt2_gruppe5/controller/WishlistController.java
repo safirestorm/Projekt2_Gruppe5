@@ -1,5 +1,6 @@
 package org.example.projekt2_gruppe5.controller;
 
+import org.example.projekt2_gruppe5.model.User;
 import org.example.projekt2_gruppe5.model.Wish;
 import org.example.projekt2_gruppe5.model.Wishlist;
 import org.example.projekt2_gruppe5.repository.UserRepo;
@@ -27,6 +28,10 @@ public class WishlistController {
 
     @GetMapping("/getUserPage")
     public String showWishlists(Model model) {
+
+        User currentUser = userRepo.getCurrentUser();
+        model.addAttribute("currentUser", currentUser);
+        System.out.println("Current user: " + currentUser);
         System.out.println("Vi prøver at vise wishlists");
 
         model.addAttribute("wishListList", wishlistRepository.getAllWishlist());
@@ -35,6 +40,7 @@ public class WishlistController {
 
         return "brugerside"; // Thymeleaf will look for the 'brugerside.html' template
     }
+
     @GetMapping("/getCreateWishlist")
     public String showCreateWishlist() {
         return "createWishlist";

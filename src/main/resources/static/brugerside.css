@@ -19,9 +19,8 @@
 /* Indholdsområde */
 .content {
     width: 80vw;
-    padding: 20px;
     box-sizing: border-box;
-
+    padding-left: 20px;
     display: flex;
     justify-content: flex-start;   /* START fra venstre */
     align-items: flex-start;       /* START fra toppen */
