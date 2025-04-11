@@ -17,6 +17,10 @@
 
 <div class="pageContent">
     <div class="frostedBox loginBox">
+        <a th:href="@{/getUserPage}" class="styledButton backButton">
+            tilbage
+        </a>
+
         <form th:action="@{/saveCreateWishlist}" method="post" class="loginForm">
             <h1>Create Wishlist</h1>
 
@@ -26,7 +30,7 @@
            <br>
                 <input type="text" id="description" name="description" placeholder="Enter description (optional)" class="inputBox">
            <br>
-            <button type="submit" class="submitButton">Create Wishlist</button>
+            <button type="submit" class="styledButton">Create Wishlist</button>
         </form>
     </div>
 </div>

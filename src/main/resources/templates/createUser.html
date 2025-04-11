@@ -9,6 +9,10 @@
     <div class="pageContent">
         <div class="frostedBox loginBox">
 
+            <a th:href="@{/}" class="styledButton backButton">
+                tilbage
+            </a>
+
             <h1>Indtast venligst dine brugeroplysninger</h1>
 
             <h2 th:if="${errorMessage}" th:text="${errorMessage}" class="errorMessage"></h2>
@@ -26,7 +30,7 @@
                 <input type="text" id="passWordControl" name="passWordControl" placeholder="Re-enter your password" required class="inputBox">
                 <br>
 
-                <button type="submit" class="submitButton">submit</button>
+                <button type="submit" class="styledButton">submit</button>
             </form>
         </div> <!-- frostedBox ends -->
     </div> <!-- pageContent ends -->

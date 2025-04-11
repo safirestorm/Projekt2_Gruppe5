@@ -31,7 +31,7 @@
                 <br>
                     <input type="password" id="password" name="password" placeholder="Enter your password" class="inputBox">
                 <br>
-                <button type="submit" class="submitButton">Login</button>
+                <button type="submit" class="styledButton">Login</button>
                     <!-- thymeleaf if condition - rooted in the LoginController -->
                     <div th:if="${loginMessage}">
                     <p th:text="${loginMessage}"></p>
@@ -42,7 +42,7 @@
             </form>
                 <br>
                 <!-- Button for create User -->
-                <a th:href="@{/getCreateUser}" class="createUserButton">Create a new user</a>
+                <a th:href="@{/getCreateUser}" class="styledButton">Create a new user</a>
             </div> <!-- loginDiv ends -->
         </div>
 
