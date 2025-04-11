@@ -73,7 +73,6 @@ public class WishController {
 
     }
 
-
     return "viewWishlist";
 }
 

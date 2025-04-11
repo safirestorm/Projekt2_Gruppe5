@@ -68,13 +68,6 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/getCurrentUser")
-    public String viewCurrentuser(Model model){
-        User currentUser = userRepo.getCurrentUser();
-        model.addAttribute("currentUser", currentUser);
-        return "loginTest";
-    }
-
     @PostMapping("/getDeleteUser")
     public String deleteUser() {
         System.out.println("Registered click on getDeleteUser Button from brugerside");
