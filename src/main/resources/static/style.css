@@ -30,6 +30,11 @@ body{
 
     transition: 0.5s;
 
+    form {
+        height: 100%;
+        width: 33.3%;
+    }
+
     button {
         background-color: unset;
         border: unset;
@@ -44,32 +49,6 @@ body{
         background-image: linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,0));
 
         transition: 0.75s;
-    }
-
-    .button::before {
-        content:"";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-
-        background-image: linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,0));
-
-        z-index: 9;
-    }
-
-    .button::after {
-        content:"";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-
-        background-image: radial-gradient(rgba(255,255,255,0), rgba(255,255,255,75%));
-
-        z-index: 9;
     }
 
     button:hover {

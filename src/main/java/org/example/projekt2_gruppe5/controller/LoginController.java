@@ -46,7 +46,7 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout() {
-        //loginService.logout();
+        userRepo.logout();
         return "redirect:/";
     }
 }

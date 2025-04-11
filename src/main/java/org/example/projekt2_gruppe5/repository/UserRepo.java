@@ -175,4 +175,12 @@ DataSource dataSource;
             }
         }
     }
+
+    public void logout() {
+        loggedInUsers.remove(httpSession.getId());
+
+        // Unbinds all attributes associated with the httpsession
+        // Avoids stuff like logging out -> clicking previous page -> wierd exceptions
+        httpSession.invalidate();
+    }
 }
