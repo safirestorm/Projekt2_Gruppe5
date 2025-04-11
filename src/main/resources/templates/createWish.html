@@ -17,6 +17,10 @@
 <div class="pageContent">
     <div class="frostedBox loginBox">
 
+        <a th:href="@{'/wishlist/' + ${wishlistId}}" class="styledButton backButton">
+            tilbage
+        </a>
+
         <h1>Opret Ønske</h1>
         <form th:action="@{/saveCreateWish}" method="post" class="loginForm">
             <!-- Gemmer wishlistId som hidden input -->
@@ -30,7 +34,7 @@
             <br>
                 <input type="text" id="description" name="description" placeholder="Indtast beskrivelse (valgfrit)" class="inputBox">
             <br>
-            <button type="submit" class="submitButton">Opret ønske</button>
+            <button type="submit" class="styledButton">Opret ønske</button>
         </form>
     </div> <!-- frostedBox ends -->
 </div> <!-- pageContent ends -->

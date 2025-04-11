@@ -41,13 +41,13 @@ public class UserController {
         userName = userName.toLowerCase();
         //Check if username is taken, return error if it is
         if (userService.isUserNameAvailable(userName)){
-            redirectAttributes.addFlashAttribute("errorMessage", "Username was taken, try again");
+            redirectAttributes.addFlashAttribute("errorMessage", "Brugernavn er taget, prøv igen");
             return "redirect:/getCreateUser";
         }
 
         //Check if passwords match, if not, return error
         if (!passWord.equals(passWordControl)){
-            redirectAttributes.addFlashAttribute("errorMessage", "Passwords did not match, try again");
+            redirectAttributes.addFlashAttribute("errorMessage", "Kodeordene matcher ikke, prøv igen");
             return "redirect:/getCreateUser";
         }
 
@@ -60,7 +60,7 @@ public class UserController {
         catch (UserNotCreatedException e){
             e.printStackTrace();
 
-            redirectAttributes.addFlashAttribute("errorMessage", "Your user could not be created for an unknown reason. Try again with other inputs");
+            redirectAttributes.addFlashAttribute("errorMessage", "Din bruger kunne laves af en ukendt årsag. Prøv igen med andre parametre");
             return "redirect:/getCreateUser";
         }
 
