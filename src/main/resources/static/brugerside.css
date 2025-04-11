@@ -31,6 +31,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    row-gap: 40px;
 
     justify-content: flex-start;  /* Venstrejuster bokse */
     align-items: flex-start;      /* Topjuster bokse */
@@ -45,6 +46,36 @@
     max-width: 220px;
     max-height: 220px;
 
+    margin-bottom: 40px;
+    color: white;
+    display: flex;
+}
+
+.boxText{
+    all: unset;
+    margin: 0;
+    position: absolute;
+    top: 5px;
+    width: 80%;
+}
+
+.boxTitle{
+    font-size: 20px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.boxDate{
+    font-weight: bolder;
+}
+
+.boxDescription{
+    overflow: hidden;
+    display: flex;
+    height: 100px;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
 /* Create Wishlist-boksen i sidebar */

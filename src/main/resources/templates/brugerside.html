@@ -37,18 +37,15 @@
     <div class="content">
         <div class="list">
             <div th:each="wishlist : ${wishListList}" class="frostedBox equalSize">
-                <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">
+                <a th:href="@{/wishlist/{id}(id=${wishlist.id})}" class="boxText">
                     <div>
-                        <label>Name:</label>
-                        <span th:text="${wishlist.name}">Navn</span>
+                        <p th:text="${wishlist.name}" class="boxTitle">Navn</p>
                     </div>
                     <div>
-                        <label>Date:</label>
-                        <span th:text="${wishlist.expirationDate}">Dato</span>
+                        <p th:text="${wishlist.expirationDate}" class="boxDate">Dato</p>
                     </div>
                     <div>
-                        <label>Description:</label>
-                        <span th:text="${wishlist.description}">Beskrivelse</span>
+                        <p th:text="${wishlist.description}" class="boxDescription">Beskrivelse</p>
                     </div>
                 </a>
 
@@ -57,7 +54,7 @@
                     <button type="submit" class="deleteButton">X</button>
                 </form>
 
-                <a th:href="@{/wishlist/{id}(id=${wishlist.id})}" class="styledButton openButton">Open</a>
+                <a th:href="@{/wishlist/{id}(id=${wishlist.id})}" class="styledButton openButton">Åben</a>
 
                 <form th:action="@{/getEditWishlist}" method="get">
                     <input type="hidden" name="id" th:value="${wishlist.id}" />
