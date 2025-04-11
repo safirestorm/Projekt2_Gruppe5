@@ -1,55 +1,89 @@
-:root {
-    --cO: #EF8200;  /* Orange */
-    --cB: #303030;  /* Dark Gray */
-    --cW: #F8F8F8;  /* Light Gray */
-}
+/* Brugerside CSS */
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--cW);
+.main {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    margin-top: 20dvh;     /* Så det starter under header */
+    height: 80dvh;
 }
 
+/* Sidebar med unik baggrund */
+.sidebar {
+    width: 20vw;
+    padding: 20px;
+    background-color: rgba(255, 255, 0, 0.1);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Indholdsområde */
+.content {
+    width: 80vw;
+    padding: 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: flex-start;   /* START fra venstre */
+    align-items: flex-start;       /* START fra toppen */
+}
+
+/* Wrapper til ønskelistebokse */
 .list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 15px;
-    width: 90%;
-    max-width: 400px;
+
+    justify-content: flex-start;  /* Venstrejuster bokse */
+    align-items: flex-start;      /* Topjuster bokse */
 }
 
-.square { /* styling og placing for boxene*/
-    background: var(--cW);
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+/* Ens størrelse på ønskelister */
+.frostedBox.equalSize {
+    width: 15vw;
+    height: 15vw;
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 220px;
+    max-height: 220px;
+
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-    color: inherit;
+    justify-content: space-between;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: left;
+}
+
+/* Create Wishlist-boksen i sidebar */
+.createbox {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Drop knap-styling, vi bruger style.css */
+.createbox button {
+    all: unset;
+}
+
+/* Fjern form spacing */
+form {
+    margin: 0;
+}
+.submitButton2{
+    all:unset;
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
     cursor: pointer;
-    border: 2px solid var(--cB);
-}
-
-.square:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-label {
-    font-weight: bold;
-    color: var(--cB);
-}
-
-span {
-    color: var(--cO);
-}
-buttons {
-
+    background-color: #5c105c;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    z-index: 5;
 }
