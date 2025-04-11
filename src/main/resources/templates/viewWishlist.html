@@ -9,6 +9,7 @@
 
 </head>
 <body>
+
 <div class="mainContent">
 <div class="square" th:each="wish : ${wishList}">
     <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image">

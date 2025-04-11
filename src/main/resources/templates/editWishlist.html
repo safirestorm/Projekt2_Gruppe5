@@ -6,6 +6,14 @@
     <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
 </head>
 <body>
+<div class="header">
+    <form th:action="@{/getUserPage}" method="get">
+        <button type="submit">Mine Lister</button></form>
+    <form th:action="@{/getUserPage}" method="get">
+        <button>GivMig</button></form>
+    <form th:action="@{/logout}" method="get">
+        <button>Log ud</button></form>
+</div>
 
 <div class="pageContent">
     <div class="frostedBox loginBox">
