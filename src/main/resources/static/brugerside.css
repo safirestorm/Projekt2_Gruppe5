@@ -63,7 +63,7 @@
     font-size: 20px;
     font-weight: bolder;
     text-transform: uppercase;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .boxDate{
@@ -71,11 +71,9 @@
 }
 
 .boxDescription{
-    overflow: hidden;
+    overflow-y: auto;
     display: flex;
-    height: 100px;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+    height: 140px;
 }
 
 .frostedBox.wishSize {
