@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Wishlist</title>
+    <title>Ønskeliste</title>
     <link rel="stylesheet" th:href="@{/style.css}" href="../static/style.css">
 
 </head>
@@ -21,24 +21,20 @@
 <div class="frostedBox" th:each="wish : ${wishList}">
     <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image">
     <div>
-        <label>ID</label>
-        <span th:text="${wish.wishId}">ID</span>
+        <label>Produkt navn</label>
+        <span th:text="${wish.name}">Produkt navn</span>
     </div>
     <div>
-        <label>Product name</label>
-        <span th:text="${wish.name}">Product name</span>
-    </div>
-    <div>
-        <label>Price</label>
-        <span th:text="${wish.price}">Price</span>
+        <label>Pris</label>
+        <span th:text="${wish.price}">Pris</span>
     </div>
     <div>
         <label>Link</label>
         <span th:text="${wish.link}">Link</span>
     </div>
     <div>
-        <label>Description</label>
-        <span th:text="${wish.description}">description</span>
+        <label>Beskrivelse</label>
+        <span th:text="${wish.description}">Beskrivelse</span>
     </div>
 
     <div class="userControls" th:if="${isOwner}">
@@ -64,7 +60,7 @@
     </div>
 </div>
     <div class="buttons">
-        <a th:href="@{/createWishOnWishlist(id=${wishlistId})}">Add Wish</a>
+        <a th:href="@{/createWishOnWishlist(id=${wishlistId})}">Tilføj Ønske</a>
 
     </div>
 </div>
