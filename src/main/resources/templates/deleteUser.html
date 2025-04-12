@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Slet Bruger</title>
+  <link rel="stylesheet" th:href="@{/style.css}" href="../static/style.css">
+</head>
+<body>
+<div class="pageContent">
+  <div class="frostedBox loginBox">
+
+    <a th:href="@{/}" class="styledButton backButton">
+      tilbage
+    </a>
+
+    <h1>Indtast password <br> for at slette bruger</h1>
+
+    <h2 th:if="${errorMessage}" th:text="${errorMessage}" class="errorMessage"></h2>
+
+    <form th:action="@{/deleteUser}" method="post" class="loginForm">
+
+      <input type="text" id="passWord" name="passWord" placeholder="Indtast password" required class="inputBox">
+
+      <button type="submit" class="styledButton">Slet bruger</button>
+    </form>
+  </div> <!-- frostedBox ends -->
+</div> <!-- pageContent ends -->
+</body>
+</html>

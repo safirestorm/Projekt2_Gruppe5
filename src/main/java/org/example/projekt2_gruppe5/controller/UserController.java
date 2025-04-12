@@ -68,11 +68,20 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("/getDeleteUser")
-    public String deleteUser() {
+
+    @GetMapping("/getDeleteUser")
+    public String getDeleteUser(){
+        return "deleteUser";
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam("passWord") String passWord) {
         System.out.println("Registered click on getDeleteUser Button from brugerside");
-        userRepo.deleteUser(userRepo.getCurrentUser());
-        return "redirect:/";
+        if (userRepo.getCurrentUser().getPassword().equals(passWord)) {
+            userRepo.deleteUser(userRepo.getCurrentUser());
+            return "redirect:/";
+        }
+        return "redirect:/getDeleteUser";
     }
 }
 
