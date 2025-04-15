@@ -15,10 +15,10 @@
 
     <h1>Indtast password <br> for at slette bruger</h1>
 
-    <h2 th:if="${errorMessage}" th:text="${errorMessage}" class="errorMessage"></h2>
+
 
     <form th:action="@{/deleteUser}" method="post" class="loginForm">
-
+      <h2 th:if="${errorMessage}" th:text="${errorMessage}" class="errorMessage"></h2>
       <input type="text" id="passWord" name="passWord" placeholder="Indtast password" required class="inputBox">
 
       <button type="submit" class="styledButton">Slet bruger</button>

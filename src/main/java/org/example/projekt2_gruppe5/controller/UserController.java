@@ -75,12 +75,13 @@ public class UserController {
     }
 
     @PostMapping("/deleteUser")
-    public String deleteUser(@RequestParam("passWord") String passWord) {
+    public String deleteUser(@RequestParam("passWord") String passWord, RedirectAttributes redirectAttr) {
         System.out.println("Registered click on getDeleteUser Button from brugerside");
         if (userRepo.getCurrentUser().getPassword().equals(passWord)) {
             userRepo.deleteUser(userRepo.getCurrentUser());
             return "redirect:/";
         }
+        redirectAttr.addFlashAttribute("errorMessage", "Forkert password");
         return "redirect:/getDeleteUser";
     }
 }
