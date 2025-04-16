@@ -27,7 +27,7 @@ Vores kode er bygget op med en MVC-model, hvor Model repræsenterer domænelogik
 9. Udfyld formularen og tryk "OPRET ØNSKE"
 10. Se dine ønsker i din ønskeliste, og eventuelt sende linket videre til dine gæster så de kan se dine ønsker
 
-### Hvordan bruger jeg programmet hvis jeg har fået tilsendt en wishlist
+### Hvordan bruger jeg programmet hvis jeg har fået tilsendt et ønskeliste link
 1. Åben tilsendt link
 2. Tryk på "reserver", hvis du ønsker at reservere en gave
 
