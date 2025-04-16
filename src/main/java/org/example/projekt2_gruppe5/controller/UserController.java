@@ -21,12 +21,14 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
+    //Vis opret bruger siden
     @GetMapping("/getCreateUser")
     public String getCreateUser(){
         System.out.println("Registered click on getCreateUser Button from index");
         return "createUser";
     }
 
+    //Gem den oprettede bruger
     @PostMapping("/saveCreateUser")
     public String saveUser(
             @RequestParam("userName") String userName,
@@ -64,7 +66,7 @@ public class UserController {
             return "redirect:/getCreateUser";
         }
 
-        redirectAttributes.addFlashAttribute("userCreatedMessage", "User " + userName + " was created! Have fun wishing <3");
+        redirectAttributes.addFlashAttribute("userCreatedMessage", "Bruger med navnet: " + userName + " Er blevet oprettet, hav det sjovt!");
         return "redirect:/";
     }
 

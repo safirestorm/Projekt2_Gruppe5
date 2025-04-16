@@ -56,16 +56,15 @@ public class WishController {
     model.addAttribute("wishlistId", wishlistId);
 
     try {
+        //Check om den nuværende bruger er ejer af ønsket
         if (userRepo.getCurrentUser().getUsername().equalsIgnoreCase(wishlistRepo.getOwnerUserName(wishlistId))) {
             System.out.println("Owner of wishlist is: " + wishlistRepo.getOwnerUserName(wishlistId));
             System.out.println("Current user is: " + userRepo.getCurrentUser().getUsername());
+            //Hvis brugeren ejer ønsket, så skal reservations-status gemmes væk
             model.addAttribute("hideReservedStatus", true);
+            //Eftersom brugeren er ejeren, skal dette også sendes til siden, således at rediger og slet knapper kan vises
+            model.addAttribute("isOwner", true);
 
-            if (userRepo.getCurrentUser().getUsername().equalsIgnoreCase(wishlistRepo.getOwnerUserName(wishlistId))){
-                System.out.println("Owner of wishlist is: " + wishlistRepo.getOwnerUserName(wishlistId));
-                System.out.println("Current user is: " + userRepo.getCurrentUser().getUsername());
-                model.addAttribute("isOwner", true);
-            }
         }
     }
     catch (NullPointerException e){

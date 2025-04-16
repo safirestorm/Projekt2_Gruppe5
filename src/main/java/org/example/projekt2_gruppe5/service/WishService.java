@@ -37,7 +37,7 @@ public class WishService {
         boolean temp = false;
 
         try(PreparedStatement statement = connection.prepareStatement(selectSQL);){
-
+            //Find ønsket frem fra databasen
             statement.setInt(1,wishID);
             ResultSet resultSet = statement.executeQuery();
 
@@ -45,12 +45,14 @@ public class WishService {
 
             resultSet.next();
 
+            //Find ønskets status
             temp = resultSet.getBoolean("reservedstatus");
         }
         catch (SQLException e){
             e.printStackTrace();
         }
 
+        //Send status tilbage
         return temp;
     }
 }

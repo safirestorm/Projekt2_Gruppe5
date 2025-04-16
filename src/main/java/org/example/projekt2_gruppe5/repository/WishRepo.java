@@ -149,22 +149,25 @@ public class WishRepo {
 
     //Skift et ønskes ReservationsStatus
     public void switchReservedStatus(int wishID){
-        String selectSQL = "SELECT reservedstatus FROM wishes WHERE id = ?";
 
         String updateSQL = "UPDATE wishes SET reservedstatus=? WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement updatestatement = connection.prepareStatement(updateSQL);){
 
+            //Check om ønsket er reserveret eller ej
             if (wishService.isWishReserved(wishID, connection)){
+                //Hvis ønsket er reserveret, skift status til ureserveret
                 updatestatement.setInt(1, 0);
                 System.out.println("Wish was reserved");
             }
             else{
+                //Ellers, sæt ønsket til at være reserveret
                 updatestatement.setInt(1, 1);
                 System.out.println("Wish was not reserved");
             }
 
+            //Udfør ændringen
             updatestatement.setInt(2, wishID);
             updatestatement.executeUpdate();
 

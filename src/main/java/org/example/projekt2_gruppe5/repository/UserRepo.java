@@ -19,8 +19,7 @@ import java.util.Map;
 @Repository
 public class UserRepo {
 
-    //User currentUser;
-
+    //Brugere opbevares i et hashmap, med et sessionID som nøgle, hvilket betyder at flere brugere kan være logget ind samtidigt
     HashMap<String, User> loggedInUsers = new HashMap<>();
 
 @Autowired
@@ -28,6 +27,7 @@ DataSource dataSource;
     @Autowired
     private HttpSession httpSession;
 
+    //Gem en ny bruger i databsen
     public void saveNewUser(User user) throws UserNotCreatedException {
         String sql = "INSERT INTO users (username, password, firstname, lastname) VALUES (?,?,?,?)";
 
@@ -61,8 +61,9 @@ DataSource dataSource;
         return user;
     }
 
+
     public boolean login(String username, String password) {
-        System.out.println("Arrived at login service");
+        System.out.println("Arrived at service");
         User user = findUser(username, password);
 
         if (user!=null) {
