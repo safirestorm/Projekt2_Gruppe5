@@ -114,6 +114,7 @@ public class WishRepo {
                 while (resultSet.next()) {
                     wish = new Wish();
                     wish.setWishId(resultSet.getInt("id"));
+                    wish.setWishlistId(resultSet.getInt("wishlistID"));
                     wish.setName(resultSet.getString("name"));
                     wish.setPrice(resultSet.getInt("price"));
                     wish.setLink(resultSet.getString("link"));
@@ -138,8 +139,7 @@ public class WishRepo {
             statement.setInt(2, wish.getPrice());
             statement.setString(3, wish.getLink());
             statement.setString(4, wish.getDescription());
-            statement.setString(5, wish.getImage());
-            statement.setInt(6, wish.getWishId());
+            statement.setInt(5, wish.getWishId());
 
             statement.executeUpdate();
         } catch (SQLException e){

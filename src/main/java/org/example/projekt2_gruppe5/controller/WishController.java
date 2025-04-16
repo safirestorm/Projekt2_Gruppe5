@@ -108,17 +108,20 @@ public class WishController {
             @RequestParam("link") String link,
             @RequestParam("description") String description){
 
-    String image = wishService.getImage();
-
-    Wish wish = new Wish(id, name, price, link, description, image);
+    Wish wish = wishRepo.getWishById(id);
+    wish.setName(name);
+    wish.setPrice(price);
+    wish.setLink(link);
+    wish.setDescription(description);
     wishRepo.updateWish(wish);
-    return "redirect:/wishlist/" + wishlistId;
+    return "redirect:/wishlist/" + wish.getWishlistId();
 }
 
 @GetMapping("/GoToLink")
-    public String goToGift(@RequestParam("id") int id, Model model){
+    public String goToGift(@RequestParam("id") int id){
     Wish wish = wishRepo.getWishById(id);
-    model.addAttribute("wish", wish);
-    return wish.getLink();
+    String link = wish.getLink();
+    System.out.println("Link: "+link);
+    return "redirect:" + link;
 }
 }

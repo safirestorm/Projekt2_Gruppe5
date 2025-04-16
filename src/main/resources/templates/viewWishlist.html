@@ -30,10 +30,6 @@
         <label>Pris: </label>
         <span th:text="${wish.price}">Pris</span>
     </div>
-    <div>
-        <label>Link: </label>
-        <span th:text="${wish.link}">Link</span>
-    </div>
     <div class="boxDescription">
         <label>Beskrivelse: </label>
         <span th:text="${wish.description}">Beskrivelse</span>
@@ -41,7 +37,7 @@
 
     <div class="userControls" th:if="${isOwner}">
         <a th:href="@{/getUpdateWish(id=${wish.wishId})}" class="styledButton editButton">!</a>
-        <a th:href="@{/goToLink}" class="styledButton openButton">Gå til hjemmeside</a>
+        <a th:href="@{'/GoToLink'(id=${wish.wishId})}" class="styledButton openButton">Gå til hjemmeside</a>
         <form th:action="@{/deleteWish}" method="post">
             <input type="hidden" name="wishlistId" th:value="${wishlistId}" />
             <input type="hidden" name="id" th:value="${wish.wishId}" />

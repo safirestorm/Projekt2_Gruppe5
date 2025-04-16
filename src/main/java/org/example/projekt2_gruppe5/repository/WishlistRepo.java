@@ -121,8 +121,11 @@ public class WishlistRepo {
         PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, wishListID);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            username = resultSet.getString("userID");
+            if (resultSet.next()) {
+                username = resultSet.getString("userID");
+            } else {
+                System.out.println("No wishlist found with ID: " + wishListID);
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
