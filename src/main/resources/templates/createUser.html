@@ -15,7 +15,9 @@
 
             <h1>Indtast venligst dine brugeroplysninger</h1>
 
-            <h2 th:if="${errorMessage}" th:text="${errorMessage}" class="errorMessage"></h2>
+            <div class="errorBox" th:if="${errorMessage}">
+                <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+            </div>
 
             <form th:action="@{/saveCreateUser}" method="post" class="loginForm">
 
