@@ -114,4 +114,11 @@ public class WishController {
     wishRepo.updateWish(wish);
     return "redirect:/wishlist/" + wishlistId;
 }
+
+@GetMapping("/GoToLink")
+    public String goToGift(@RequestParam("id") int id, Model model){
+    Wish wish = wishRepo.getWishById(id);
+    model.addAttribute("wish", wish);
+    return wish.getLink();
+}
 }
