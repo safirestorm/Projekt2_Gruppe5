@@ -33,7 +33,7 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("loginMessage", "Welcome " + username);
             return "redirect:/getUserPage";
         } else {
-            redirectAttributes.addFlashAttribute("loginError", "Could not log in, try again");
+            redirectAttributes.addFlashAttribute("errorMessage", "Brugernavn eller password var forkert.");
             return "redirect:/";
         }
     }

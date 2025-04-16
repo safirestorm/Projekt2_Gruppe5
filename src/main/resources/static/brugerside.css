@@ -78,17 +78,17 @@
 
 .frostedBox.wishSize {
     width: 30vw;
-    height: 30vw;
+    height: 40vw;
     min-width: 200px;
-    min-height: 200px;
+    min-height: 250px;
     max-width: 270px;
-    max-height: 270px;
-
+    max-height: 300px;
 }
 
 .frostedBox.wishSize img {
-    width: 60%;
-    height: 60%;
+    width: 50%;
+    height: 50%;
+    justify-content: center;
     margin-bottom: 15px;
     border-radius: 4px;
     object-fit: cover;

@@ -21,12 +21,14 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
+    //Vis opret bruger siden
     @GetMapping("/getCreateUser")
     public String getCreateUser(){
         System.out.println("Registered click on getCreateUser Button from index");
         return "createUser";
     }
 
+    //Gem den oprettede bruger
     @PostMapping("/saveCreateUser")
     public String saveUser(
             @RequestParam("userName") String userName,
@@ -64,15 +66,25 @@ public class UserController {
             return "redirect:/getCreateUser";
         }
 
-        redirectAttributes.addFlashAttribute("userCreatedMessage", "User " + userName + " was created! Have fun wishing <3");
+        redirectAttributes.addFlashAttribute("userCreatedMessage", "Bruger med navnet: " + userName + " Er blevet oprettet, hav det sjovt!");
         return "redirect:/";
     }
 
-    @PostMapping("/getDeleteUser")
-    public String deleteUser() {
+
+    @GetMapping("/getDeleteUser")
+    public String getDeleteUser(){
+        return "deleteUser";
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam("passWord") String passWord, RedirectAttributes redirectAttr) {
         System.out.println("Registered click on getDeleteUser Button from brugerside");
-        userRepo.deleteUser(userRepo.getCurrentUser());
-        return "redirect:/";
+        if (userRepo.getCurrentUser().getPassword().equals(passWord)) {
+            userRepo.deleteUser(userRepo.getCurrentUser());
+            return "redirect:/";
+        }
+        redirectAttr.addFlashAttribute("errorMessage", "Forkert password");
+        return "redirect:/getDeleteUser";
     }
 }
 
