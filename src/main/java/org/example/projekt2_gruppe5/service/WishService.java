@@ -16,6 +16,7 @@ public class WishService {
     @Autowired
     DataSource dataSource;
 
+    // Tildeler tilfældigt billede til gave når den bliver oprettet af bruger
     public String getImage(){
         String image = null;
         Random gen = new Random();

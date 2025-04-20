@@ -28,100 +28,108 @@ public class WishController {
     @Autowired
     private WishlistRepo wishlistRepo;
 
+    // Viser siden til at oprette et nyt ønske på en ønskeliste
     @GetMapping("/createWishOnWishlist")
     public String createWish(@RequestParam("id") int wishlistId, Model model){
     model.addAttribute("wishlistId", wishlistId);
     return "createWish";
 }
 
-@PostMapping("/saveCreateWish")
-    public String postCreateWish(
-        @RequestParam("name") String name,
-        @RequestParam("price") int price,
-        @RequestParam("link") String link,
-        @RequestParam("description") String description,
-        @RequestParam("wishlistId") int wishlistId){
-
-       String image = wishService.getImage();
-
-       Wish wish = new Wish(name, price, link, description, image);
-       wishRepo.saveWish(wish, wishlistId);
-       return "redirect:/wishlist/" + wishlistId;
-}
-
-@GetMapping("/wishlist/{id}")
-    public String viewWishlist(@PathVariable("id") int wishlistId, Model model){
-    ArrayList<Wish> wishList = wishRepo.getAllWishesOnWishlist(wishlistId);
-    model.addAttribute("wishList", wishList);
-    model.addAttribute("wishlistId", wishlistId);
-
-    try {
-        //Check om den nuværende bruger er ejer af ønsket
-        if (userRepo.getCurrentUser().getUsername().equalsIgnoreCase(wishlistRepo.getOwnerUserName(wishlistId))) {
-            System.out.println("Owner of wishlist is: " + wishlistRepo.getOwnerUserName(wishlistId));
-            System.out.println("Current user is: " + userRepo.getCurrentUser().getUsername());
-            //Hvis brugeren ejer ønsket, så skal reservations-status gemmes væk
-            model.addAttribute("hideReservedStatus", true);
-            //Eftersom brugeren er ejeren, skal dette også sendes til siden, således at rediger og slet knapper kan vises
-            model.addAttribute("isOwner", true);
-
-        }
-    }
-    catch (NullPointerException e){
-        System.out.println("No user is logged in");
-
-    }
-
-    return "viewWishlist";
-}
-
-@PostMapping("/deleteWish")
-    public String deleteWishFromWishlist(@RequestParam("id") int id, @RequestParam("wishlistId") int wishlistId){
-    wishRepo.deleteWish(id);
-    return "redirect:/wishlist/" + wishlistId;
-}
-
-@PostMapping("/reserveOrUnreserveWish/{id}gift{wishID}")
-    public String reserveWish(@PathVariable("id") int wishlistId, @PathVariable("wishID") int wishID){
-
-    System.out.println("Prøver at ændre reservations status på ønske");
-    wishRepo.switchReservedStatus(wishID);
-    System.out.println("Har ændret status på ønske");
-
-    return "redirect:/wishlist/" + wishlistId;
-}
-
-@GetMapping("/getUpdateWish")
-    public String updateWish(@RequestParam("id") int id, Model model){
-    Wish wish = wishRepo.getWishById(id);
-    model.addAttribute("wish", wish);
-    model.addAttribute("wishlistId", wish.getWishlistId());
-    return "updateWish";
-}
-
-@PostMapping("/saveUpdateWish")
-    public String postUpdateWish(
-            @RequestParam("id") int id,
-            @RequestParam("wishlistId") int wishlistId,
+    // Håndterer indsendelsen af formularen for at oprette et nyt ønske
+    @PostMapping("/saveCreateWish")
+        public String postCreateWish(
             @RequestParam("name") String name,
             @RequestParam("price") int price,
             @RequestParam("link") String link,
-            @RequestParam("description") String description){
+            @RequestParam("description") String description,
+            @RequestParam("wishlistId") int wishlistId){
 
-    Wish wish = wishRepo.getWishById(id);
-    wish.setName(name);
-    wish.setPrice(price);
-    wish.setLink(link);
-    wish.setDescription(description);
-    wishRepo.updateWish(wish);
-    return "redirect:/wishlist/" + wish.getWishlistId();
-}
+           String image = wishService.getImage();
 
-@GetMapping("/GoToLink")
-    public String goToGift(@RequestParam("id") int id){
-    Wish wish = wishRepo.getWishById(id);
-    String link = wish.getLink();
-    System.out.println("Link: "+link);
-    return "redirect:" + link;
-}
+           Wish wish = new Wish(name, price, link, description, image);
+           wishRepo.saveWish(wish, wishlistId);
+           return "redirect:/wishlist/" + wishlistId;
+    }
+
+    // Viser ønskerne på en ønskeliste
+    @GetMapping("/wishlist/{id}")
+        public String viewWishlist(@PathVariable("id") int wishlistId, Model model){
+        ArrayList<Wish> wishList = wishRepo.getAllWishesOnWishlist(wishlistId);
+        model.addAttribute("wishList", wishList);
+        model.addAttribute("wishlistId", wishlistId);
+
+        try {
+            //Check om den nuværende bruger er ejer af ønsket
+            if (userRepo.getCurrentUser().getUsername().equalsIgnoreCase(wishlistRepo.getOwnerUserName(wishlistId))) {
+                System.out.println("Owner of wishlist is: " + wishlistRepo.getOwnerUserName(wishlistId));
+                System.out.println("Current user is: " + userRepo.getCurrentUser().getUsername());
+                //Hvis brugeren ejer ønsket, så skal reservations-status gemmes væk
+                model.addAttribute("hideReservedStatus", true);
+                //Eftersom brugeren er ejeren, skal dette også sendes til siden, således at rediger og slet knapper kan vises
+                model.addAttribute("isOwner", true);
+
+            }
+        }
+        catch (NullPointerException e){
+            System.out.println("No user is logged in");
+
+        }
+
+        return "viewWishlist";
+    }
+
+    // Sletter et ønske fra en ønskeliste
+    @PostMapping("/deleteWish")
+        public String deleteWishFromWishlist(@RequestParam("id") int id, @RequestParam("wishlistId") int wishlistId){
+        wishRepo.deleteWish(id);
+        return "redirect:/wishlist/" + wishlistId;
+    }
+
+    // Skifter mellem at reservere og ophæve reservation af et ønske
+    @PostMapping("/reserveOrUnreserveWish/{id}gift{wishID}")
+        public String reserveWish(@PathVariable("id") int wishlistId, @PathVariable("wishID") int wishID){
+
+        System.out.println("Prøver at ændre reservations status på ønske");
+        wishRepo.switchReservedStatus(wishID);
+        System.out.println("Har ændret status på ønske");
+
+        return "redirect:/wishlist/" + wishlistId;
+    }
+
+    // Viser siden til at redigere et eksisterende ønske
+    @GetMapping("/getUpdateWish")
+        public String updateWish(@RequestParam("id") int id, Model model){
+        Wish wish = wishRepo.getWishById(id);
+        model.addAttribute("wish", wish);
+        model.addAttribute("wishlistId", wish.getWishlistId());
+        return "updateWish";
+    }
+
+    // Håndterer indsendelsen af formularen til at opdatere et ønske
+    @PostMapping("/saveUpdateWish")
+        public String postUpdateWish(
+                @RequestParam("id") int id,
+                @RequestParam("wishlistId") int wishlistId,
+                @RequestParam("name") String name,
+                @RequestParam("price") int price,
+                @RequestParam("link") String link,
+                @RequestParam("description") String description){
+
+        Wish wish = wishRepo.getWishById(id);
+        wish.setName(name);
+        wish.setPrice(price);
+        wish.setLink(link);
+        wish.setDescription(description);
+        wishRepo.updateWish(wish);
+        return "redirect:/wishlist/" + wish.getWishlistId();
+    }
+
+    // Redirecter brugeren til linket knyttet til et ønske
+    @GetMapping("/GoToLink")
+        public String goToGift(@RequestParam("id") int id){
+        Wish wish = wishRepo.getWishById(id);
+        String link = wish.getLink();
+        System.out.println("Link: "+link);
+        return "redirect:" + link;
+    }
 }

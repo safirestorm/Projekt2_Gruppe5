@@ -1,8 +1,8 @@
 USE givmig;
 
-    DROP TABLE users;
-    DROP TABLE wishlists;
     DROP TABLE wishes;
+    DROP TABLE wishlists;
+    DROP TABLE users;
 
 CREATE TABLE users (
                        username varchar(50) UNIQUE PRIMARY KEY,
@@ -44,8 +44,8 @@ INSERT INTO wishlists (userID, name, date, description) VALUES
                                                             ('notbatman', 'Totally a real party', '2025-05-09', 'Hr. joker, du er inviteret til fest på Wayne Gården. Kom iført fangedragt og håndjern.'),
                                                             ('notbatman', 'BATPARTY!!!', '2025-05-10', 'JOKEREN ER SIKKERT I FÆNGSEL NU, DET SKAL FEJRES!');
 
-INSERT INTO wishes (wishlistID, name, price, link, description, image, reservedstatus) VALUES (1, 'ny flot guitar', 2400, 'Guitarbasen.dk', 'blue-present.png', false),
-                                                                                              (1, 'Lækker kage', 200, 'lagkagehuset.dk', 'gold-present.png', false),
+INSERT INTO wishes (wishlistID, name, price, link, description, image, reservedstatus) VALUES (1, 'ny flot guitar', 2400, 'Guitarbasen.dk', NULL, 'blue-present.png', false),
+                                                                                              (1, 'Lækker kage', 200, 'lagkagehuset.dk', 'Helst en jordbær tærte', 'gold-present.png', false),
                                                                                               (2, 'Cool new bass guitar', 4000, 'guitarbasen.dk', 'A nice new bass for the jazz', 'green-present.png', true),
                                                                                               (2, 'Fast Ford Mustang', 400000, 'Ford.dk', 'Vroom Vroom, car go fast', 'purple-present.png', false),
                                                                                               (3, 'Black facepaint', 200, 'MakeupFormen.com', 'Jeg skal bruge noget sort ansigtsmaling... fordi det er sejt', 'red-present.png', false),

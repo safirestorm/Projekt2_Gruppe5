@@ -129,6 +129,7 @@ public class WishRepo {
         return wish;
     }
 
+    // Opdater et ønske ud fra id
     public void updateWish(Wish wish) {
         String sql = "UPDATE wishes SET name = ?, price = ?, link = ?, description = ? WHERE id = ?";
 

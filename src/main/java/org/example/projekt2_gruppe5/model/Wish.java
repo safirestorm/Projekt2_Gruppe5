@@ -10,6 +10,7 @@ public class Wish {
     private boolean isReserved;
     int wishlistId;
 
+    // Constructors
     public Wish(String name, int price, String link, String description, String image) {
         this.name = name;
         this.price = price;
@@ -31,6 +32,7 @@ public class Wish {
         isReserved = false;
     }
 
+    // Getters and Setters
     public int getWishId() {
         return wishId;
     }
